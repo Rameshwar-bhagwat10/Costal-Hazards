@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
@@ -210,10 +211,13 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
                 <div key={index} className="relative group">
                   <div className="aspect-square rounded-lg overflow-hidden bg-[var(--bg-muted)]">
                     {file.type.startsWith('image/') ? (
-                      <img
+                      <Image
                         src={URL.createObjectURL(file)}
                         alt={`Upload ${index + 1}`}
+                        width={200}
+                        height={200}
                         className="w-full h-full object-cover"
+                        unoptimized
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
@@ -33,13 +33,10 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
   const [result, setResult] = useState<AIVerificationResult | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    runVerification()
-  }, [])
-
-  const runVerification = async () => {
-    // Animate pipeline steps
-    for (let i = 0; i < pipelineSteps.length; i++) {
+  const runVerification = useCallback(async () => {
+    // Animate pipeline steps (4 steps total)
+    const TOTAL_STEPS = 4
+    for (let i = 0; i < TOTAL_STEPS; i++) {
       await new Promise((resolve) => setTimeout(resolve, 800))
       setPipelineSteps((prev) =>
         prev.map((step, idx) => ({
@@ -62,7 +59,11 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
     } catch {
       setError('AI verification failed. Please try again.')
     }
-  }
+  }, [data])
+
+  useEffect(() => {
+    runVerification()
+  }, [runVerification])
 
   const handleConfirm = () => {
     if (result) {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 
@@ -198,10 +199,13 @@ export function SocialInput({ onVerify, isVerifying, disabled }: SocialInputProp
               </div>
             ) : (
               <div className="relative rounded-lg overflow-hidden border border-[var(--border-soft)]">
-                <img
+                <Image
                   src={previewUrl}
                   alt="Screenshot preview"
+                  width={400}
+                  height={256}
                   className="w-full max-h-64 object-contain bg-[var(--bg-muted)]"
+                  unoptimized
                 />
                 {!isVerifying && (
                   <button
