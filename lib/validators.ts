@@ -2,8 +2,8 @@ import { Report } from '@/types/report'
 
 export function validateReport(data: Partial<Report>): string[] {
   const errors: string[] = []
-  if (!data.title?.trim()) errors.push('Title is required')
   if (!data.hazardType) errors.push('Hazard type is required')
+  if (!data.description?.trim()) errors.push('Description is required')
   if (!data.location) errors.push('Location is required')
   return errors
 }

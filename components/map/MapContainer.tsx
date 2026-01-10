@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo, useCallback } from 'react'
-import { MapContainer as LeafletMap, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { MapContainer as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import { HeatZones } from './HeatZones'
 import { hazardTypes } from '@/data/hazardTypes'
@@ -13,9 +13,9 @@ interface MapContainerProps {
   selectedHazards: string[]
   confidenceThreshold: number
   onMarkerClick: (report: MapReport) => void
+  extraReports?: MapReport[]
 }
 
-// Fix Leaflet default icon issue
 const createHazardIcon = (color: string) => {
   return L.divIcon({
     className: 'custom-marker',
@@ -35,18 +35,11 @@ const createHazardIcon = (color: string) => {
   })
 }
 
-function MapUpdater({ center }: { center: [number, number] }) {
-  const map = useMap()
-  useEffect(() => {
-    map.setView(center, map.getZoom())
-  }, [center, map])
-  return null
-}
-
 export function MapContainerComponent({
   selectedHazards,
   confidenceThreshold,
   onMarkerClick,
+  extraReports,
 }: MapContainerProps) {
   const [isMounted, setIsMounted] = useState(false)
 
@@ -54,20 +47,27 @@ export function MapContainerComponent({
     setIsMounted(true)
   }, [])
 
+  // Use extraReports if provided, otherwise use dummy data
+  const allReports = useMemo(() => {
+    if (extraReports && extraReports.length > 0) {
+      return extraReports
+    }
+    return dummyMapReports
+  }, [extraReports])
+
   const filteredReports = useMemo(() => {
-    return dummyMapReports.filter(
+    return allReports.filter(
       (report) =>
         selectedHazards.includes(report.hazardType) &&
         report.confidence >= confidenceThreshold
     )
-  }, [selectedHazards, confidenceThreshold])
+  }, [allReports, selectedHazards, confidenceThreshold])
 
   const getMarkerIcon = useCallback((hazardType: string) => {
     const hazard = hazardTypes.find((h) => h.id === hazardType)
     return createHazardIcon(hazard?.color || '#6B7280')
   }, [])
 
-  // Center on India's west coast
   const center: [number, number] = [17.5, 73.5]
   const zoom = 7
 
@@ -95,32 +95,39 @@ export function MapContainerComponent({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* Heat Zones */}
       <HeatZones selectedHazards={selectedHazards} />
 
-      {/* Markers */}
-      {filteredReports.map((report) => (
-        <Marker
-          key={report.id}
-          position={[report.lat, report.lng]}
-          icon={getMarkerIcon(report.hazardType)}
-          eventHandlers={{
-            click: () => onMarkerClick(report),
-          }}
-        >
-          <Popup>
-            <div className="text-sm">
-              <strong>{report.locationName}</strong>
-              <br />
-              <span className="text-gray-600">
-                {hazardTypes.find((h) => h.id === report.hazardType)?.name}
-              </span>
-              <br />
-              <span className="text-xs">Click for details</span>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
+      {filteredReports.map((report) => {
+        // Handle both coordinate formats
+        const lat = report.coordinates?.lat ?? (report as any).lat
+        const lng = report.coordinates?.lng ?? (report as any).lng
+        const locationName = report.location ?? (report as any).locationName
+        
+        if (!lat || !lng) return null
+
+        return (
+          <Marker
+            key={report.id}
+            position={[lat, lng]}
+            icon={getMarkerIcon(report.hazardType)}
+            eventHandlers={{
+              click: () => onMarkerClick(report),
+            }}
+          >
+            <Popup>
+              <div className="text-sm">
+                <strong>{locationName}</strong>
+                <br />
+                <span className="text-gray-600">
+                  {hazardTypes.find((h) => h.id === report.hazardType)?.name}
+                </span>
+                <br />
+                <span className="text-xs">Click for details</span>
+              </div>
+            </Popup>
+          </Marker>
+        )
+      })}
     </LeafletMap>
   )
 }

@@ -1,13 +1,17 @@
 export interface MapReport {
   id: string
-  lat: number
-  lng: number
   hazardType: 'flood' | 'erosion' | 'rip-current' | 'storm-surge' | 'tsunami' | 'pollution'
   confidence: number
-  locationName: string
   severity: 'high' | 'medium' | 'low'
   summary: string
   timestamp: string
+  hasMedia?: boolean
+  // Support both coordinate formats
+  lat?: number
+  lng?: number
+  locationName?: string
+  location?: string
+  coordinates?: { lat: number; lng: number }
 }
 
 export interface HeatZone {

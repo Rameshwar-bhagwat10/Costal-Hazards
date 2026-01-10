@@ -9,8 +9,10 @@ import { TipsWidget } from '@/components/home/TipsWidget'
 import { HazardTrendChart } from '@/components/charts/HazardTrendChart'
 import { RegionRiskChart } from '@/components/charts/RegionRiskChart'
 import { SkeletonCard, SkeletonChart } from '@/components/ui/Skeleton'
-import { dummyReports } from '@/data/dummyReports'
+import { dummyReports, type DummyReport } from '@/data/dummyReports'
 import { hazardTrendData } from '@/data/dummyAnalytics'
+import { useReportStore } from '@/store/useReportStore'
+import { VISIBILITY_THRESHOLD } from '@/types/report'
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -18,25 +20,45 @@ export default function HomePage() {
   const [selectedRegion, setSelectedRegion] = useState('All Regions')
   const [selectedTime, setSelectedTime] = useState('24h')
 
-  // Simulate loading
+  // Get reports from store
+  const storeReports = useReportStore((state) => state.reports)
+
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 800)
     return () => clearTimeout(timer)
   }, [])
 
-  // Filter reports using useMemo instead of useEffect + setState
+  // Combine store reports with dummy reports and apply filters
   const filteredReports = useMemo(() => {
-    let reports = [...dummyReports]
+    // Convert store reports to DummyReport format for compatibility
+    const convertedStoreReports: DummyReport[] = storeReports
+      .filter(r => r.status === 'verified' && r.confidence >= VISIBILITY_THRESHOLD)
+      .map(r => ({
+        id: r.id,
+        hazardType: r.hazardType as DummyReport['hazardType'],
+        region: r.region,
+        location: r.location.name,
+        timestamp: r.timestamp,
+        confidence: r.confidence,
+        summary: r.aiSummary,
+        hasMedia: r.hasMedia,
+        severity: r.severity,
+      }))
 
+    // Combine with dummy reports (store reports first - newest)
+    let reports = [...convertedStoreReports, ...dummyReports]
+
+    // Apply hazard filter
     if (selectedHazard !== 'all') {
       reports = reports.filter((r) => r.hazardType === selectedHazard)
     }
 
+    // Apply region filter
     if (selectedRegion !== 'All Regions') {
       reports = reports.filter((r) => r.region === selectedRegion)
     }
 
-    // Time filtering (simplified for demo)
+    // Apply time filter
     const now = new Date()
     const cutoff = new Date()
     if (selectedTime === '24h') {
@@ -50,18 +72,32 @@ export default function HomePage() {
     reports = reports.filter((r) => new Date(r.timestamp) >= cutoff)
 
     return reports
-  }, [selectedHazard, selectedRegion, selectedTime])
+  }, [storeReports, selectedHazard, selectedRegion, selectedTime])
+
+  // Calculate dynamic stats
+  const stats = useMemo(() => {
+    const visibleStoreReports = storeReports.filter(
+      r => r.status === 'verified' && r.confidence >= VISIBILITY_THRESHOLD
+    )
+    const totalReports = dummyReports.length + visibleStoreReports.length
+    const highRiskCount = dummyReports.filter(r => r.severity === 'high').length +
+      visibleStoreReports.filter(r => r.severity === 'high').length
+    
+    return {
+      totalReports,
+      highRiskCount,
+      newReportsToday: visibleStoreReports.length,
+    }
+  }, [storeReports])
 
   return (
     <div className="space-y-6">
-      {/* Alert Banner */}
       <AlertBanner
         severity="high"
         title="Active Flood Warning"
         message="Flooding reported in Marina Bay Area. Avoid low-lying coastal roads and monitor official updates."
       />
 
-      {/* Stats Cards */}
       {isLoading ? (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map((i) => (
@@ -69,10 +105,9 @@ export default function HomePage() {
           ))}
         </div>
       ) : (
-        <StatsCards />
+        <StatsCards extraReports={stats.newReportsToday} />
       )}
 
-      {/* Filters */}
       <ReportFilters
         selectedHazard={selectedHazard}
         selectedRegion={selectedRegion}
@@ -82,20 +117,15 @@ export default function HomePage() {
         onTimeChange={setSelectedTime}
       />
 
-      {/* Main Content Grid */}
       <div className="grid gap-6 lg:grid-cols-3">
-        {/* Report Feed - Takes 2 columns on large screens */}
         <div className="lg:col-span-2">
           <ReportFeed reports={filteredReports} isLoading={isLoading} />
         </div>
-
-        {/* Sidebar - Tips Widget */}
         <div className="space-y-6">
           <TipsWidget />
         </div>
       </div>
 
-      {/* Charts Section */}
       <section>
         <h2 className="heading-m mb-4">Trends & Analytics</h2>
         {isLoading ? (

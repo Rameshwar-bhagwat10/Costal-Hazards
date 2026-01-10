@@ -70,7 +70,7 @@ export function ZoneInfoModal({ report, onClose }: ZoneInfoModalProps) {
           <div className="flex items-start justify-between mb-4">
             <div>
               <h2 id="zone-title" className="heading-m mb-2">
-                {report.locationName}
+                {report.locationName || report.location}
               </h2>
               <div className="flex flex-wrap gap-2">
                 <Badge
@@ -124,7 +124,7 @@ export function ZoneInfoModal({ report, onClose }: ZoneInfoModalProps) {
 
           {/* Coordinates */}
           <div className="text-xs text-[var(--text-secondary)] mb-4">
-            <span>Coordinates: {report.lat.toFixed(4)}, {report.lng.toFixed(4)}</span>
+            <span>Coordinates: {(report.lat ?? report.coordinates?.lat ?? 0).toFixed(4)}, {(report.lng ?? report.coordinates?.lng ?? 0).toFixed(4)}</span>
           </div>
 
           {/* Actions */}

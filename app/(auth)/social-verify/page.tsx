@@ -1,11 +1,14 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { SocialInput } from '@/components/social/SocialInput'
 import { VerificationProgress } from '@/components/social/VerificationProgress'
 import { VerificationResult } from '@/components/social/VerificationResult'
+import { VerificationHistory } from '@/components/social/VerificationHistory'
 import { TrustTips } from '@/components/social/TrustTips'
 import { Badge } from '@/components/ui/Badge'
+import { useReportStore } from '@/store/useReportStore'
+import { useToast } from '@/components/ui/Toast'
 import {
   VERIFICATION_STEPS,
   generateMockResult,
@@ -14,6 +17,7 @@ import {
 } from '@/lib/mockSocialVerification'
 
 type VerificationState = 'idle' | 'verifying' | 'result' | 'error'
+type InputType = 'text' | 'link' | 'screenshot'
 
 interface VerificationStep {
   id: string
@@ -27,6 +31,10 @@ export default function SocialVerifyPage() {
     VERIFICATION_STEPS.map(s => ({ ...s }))
   )
   const [result, setResult] = useState<SocialVerificationResult | null>(null)
+  const lastInputRef = useRef<{ type: InputType; content: string } | null>(null)
+  
+  const addSocialVerification = useReportStore((state) => state.addSocialVerification)
+  const toast = useToast()
 
   const handleStepUpdate = useCallback((stepId: string, status: 'processing' | 'completed') => {
     setSteps(prev =>
@@ -41,19 +49,31 @@ export default function SocialVerifyPage() {
     setResult(null)
     setSteps(VERIFICATION_STEPS.map(s => ({ ...s, status: 'pending' as const })))
     
-    // Store input content for mock result generation
     const content = input.type === 'screenshot' 
       ? 'Screenshot uploaded for verification' 
       : input.content
+    
+    lastInputRef.current = { 
+      type: input.type as InputType, 
+      content 
+    }
 
     try {
-      // Simulate step-by-step verification
       await simulateVerification(handleStepUpdate)
-      
-      // Generate mock result
       const mockResult = generateMockResult(content)
       setResult(mockResult)
       setState('result')
+      
+      // Save to store
+      addSocialVerification({
+        inputType: input.type as InputType,
+        inputContent: content,
+        confidence: mockResult.confidenceScore,
+        status: mockResult.status,
+        summary: mockResult.explanation,
+      })
+      
+      toast.info('Verification complete!')
     } catch {
       setState('error')
     }
@@ -62,12 +82,12 @@ export default function SocialVerifyPage() {
   const handleVerifyAnother = () => {
     setState('idle')
     setResult(null)
+    lastInputRef.current = null
     setSteps(VERIFICATION_STEPS.map(s => ({ ...s, status: 'pending' as const })))
   }
 
   return (
     <div className="max-w-5xl mx-auto">
-      {/* Page Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <h1 className="heading-l">Social Media Verification</h1>
@@ -78,9 +98,7 @@ export default function SocialVerifyPage() {
         </p>
       </div>
 
-      {/* Main Content - Two Column Layout */}
       <div className="grid lg:grid-cols-2 gap-6">
-        {/* Left Column - Input & Progress */}
         <div className="space-y-4">
           <SocialInput
             onVerify={handleVerify}
@@ -88,15 +106,10 @@ export default function SocialVerifyPage() {
             disabled={state === 'verifying'}
           />
 
-          {/* Verification Progress */}
           {(state === 'verifying' || state === 'result') && (
-            <VerificationProgress
-              steps={steps}
-              isActive={state === 'verifying'}
-            />
+            <VerificationProgress steps={steps} isActive={state === 'verifying'} />
           )}
 
-          {/* Error State */}
           {state === 'error' && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
               <div className="flex items-start gap-3">
@@ -108,10 +121,7 @@ export default function SocialVerifyPage() {
                   <p className="text-sm text-[var(--text-secondary)] mt-1">
                     Unable to complete verification. Please try again.
                   </p>
-                  <button
-                    onClick={handleVerifyAnother}
-                    className="mt-2 text-sm font-medium text-[var(--info-blue)] hover:underline"
-                  >
+                  <button onClick={handleVerifyAnother} className="mt-2 text-sm font-medium text-[var(--info-blue)] hover:underline">
                     Try Again
                   </button>
                 </div>
@@ -119,19 +129,15 @@ export default function SocialVerifyPage() {
             </div>
           )}
 
-          {/* Trust Tips - Show when idle or verifying */}
-          {(state === 'idle' || state === 'verifying') && (
-            <TrustTips />
-          )}
+          {(state === 'idle' || state === 'verifying') && <TrustTips />}
+          
+          {/* Verification History */}
+          {state === 'idle' && <VerificationHistory />}
         </div>
 
-        {/* Right Column - Results */}
         <div>
           {state === 'result' && result ? (
-            <VerificationResult
-              result={result}
-              onVerifyAnother={handleVerifyAnother}
-            />
+            <VerificationResult result={result} onVerifyAnother={handleVerifyAnother} />
           ) : (
             <div className="h-full flex items-center justify-center min-h-[300px] lg:min-h-0">
               <div className="text-center p-8">
@@ -154,7 +160,6 @@ export default function SocialVerifyPage() {
         </div>
       </div>
 
-      {/* Bottom Educational Banner */}
       <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center">
@@ -163,13 +168,10 @@ export default function SocialVerifyPage() {
             </svg>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-              Help Stop Misinformation
-            </h4>
+            <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-1">Help Stop Misinformation</h4>
             <p className="text-sm text-[var(--text-secondary)]">
               During emergencies, false information can spread rapidly and cause harm. 
-              Always verify before sharing, and encourage others to do the same. 
-              Together, we can keep our communities informed and safe.
+              Always verify before sharing, and encourage others to do the same.
             </p>
           </div>
         </div>

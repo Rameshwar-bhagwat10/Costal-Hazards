@@ -7,9 +7,9 @@ import { MapLegend } from '@/components/map/MapLegend'
 import { ZoneInfoModal } from '@/components/map/ZoneInfoModal'
 import { hazardTypes } from '@/data/hazardTypes'
 import { dummyMapReports, type MapReport } from '@/data/dummyMapReports'
-import { Skeleton } from '@/components/ui/Skeleton'
+import { useReportStore } from '@/store/useReportStore'
+import { VISIBILITY_THRESHOLD } from '@/types/report'
 
-// Dynamic import to avoid SSR issues with Leaflet
 const MapContainer = dynamic(
   () => import('@/components/map/MapContainer').then((mod) => mod.MapContainerComponent),
   {
@@ -33,7 +33,28 @@ export default function MapPage() {
   const [timeRange, setTimeRange] = useState('7d')
   const [selectedReport, setSelectedReport] = useState<MapReport | null>(null)
 
-  // Debounced confidence change
+  // Get reports from store
+  const storeReports = useReportStore((state) => state.reports)
+
+  // Convert store reports to MapReport format and combine with dummy data
+  const allMapReports = useMemo(() => {
+    const convertedStoreReports: MapReport[] = storeReports
+      .filter(r => r.status === 'verified' && r.confidence >= VISIBILITY_THRESHOLD)
+      .map(r => ({
+        id: r.id,
+        hazardType: r.hazardType,
+        location: r.location.name,
+        coordinates: { lat: r.location.lat, lng: r.location.lng },
+        confidence: r.confidence,
+        severity: r.severity,
+        timestamp: r.timestamp,
+        summary: r.aiSummary,
+        hasMedia: r.hasMedia,
+      }))
+
+    return [...convertedStoreReports, ...dummyMapReports]
+  }, [storeReports])
+
   const handleConfidenceChange = useCallback((value: number) => {
     setConfidenceThreshold(value)
   }, [])
@@ -46,20 +67,18 @@ export default function MapPage() {
     setSelectedReport(null)
   }, [])
 
-  // Stats for header
   const stats = useMemo(() => {
-    const filtered = dummyMapReports.filter(
+    const filtered = allMapReports.filter(
       (r) => selectedHazards.includes(r.hazardType) && r.confidence >= confidenceThreshold
     )
     return {
       total: filtered.length,
       high: filtered.filter((r) => r.severity === 'high').length,
     }
-  }, [selectedHazards, confidenceThreshold])
+  }, [allMapReports, selectedHazards, confidenceThreshold])
 
   return (
     <div className="h-[calc(100vh-8rem)] lg:h-[calc(100vh-10rem)] flex flex-col -mx-4 sm:-mx-6 lg:-mx-8 -my-6 md:-my-8">
-      {/* Header */}
       <div className="bg-[var(--bg-card)] border-b border-[var(--border-soft)] px-4 py-3">
         <div className="flex items-center justify-between">
           <div>
@@ -85,15 +104,14 @@ export default function MapPage() {
         </div>
       </div>
 
-      {/* Map Container */}
       <div className="flex-1 relative">
         <MapContainer
           selectedHazards={selectedHazards}
           confidenceThreshold={confidenceThreshold}
           onMarkerClick={handleMarkerClick}
+          extraReports={allMapReports}
         />
 
-        {/* Filters Overlay */}
         <MapFilters
           selectedHazards={selectedHazards}
           confidenceThreshold={confidenceThreshold}
@@ -103,10 +121,7 @@ export default function MapPage() {
           onTimeRangeChange={setTimeRange}
         />
 
-        {/* Legend Overlay */}
         <MapLegend />
-
-        {/* Zone Info Modal */}
         <ZoneInfoModal report={selectedReport} onClose={handleCloseModal} />
       </div>
     </div>
