@@ -16,19 +16,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary: `
-        bg-info-blue text-white
-        hover:bg-blue-700 active:bg-blue-800
-        focus-visible:ring-info-blue
+        bg-[#2563EB] text-white
+        hover:bg-[#1D4ED8] active:bg-[#1E40AF]
+        focus-visible:ring-[#2563EB]
       `,
       secondary: `
-        bg-bg-muted text-text-primary border border-border-soft
+        bg-[var(--bg-muted)] text-[var(--text-primary)] border border-[var(--border-soft)]
         hover:bg-gray-200 active:bg-gray-300
         focus-visible:ring-gray-400
       `,
       danger: `
-        bg-alert-red text-white
-        hover:bg-red-700 active:bg-red-800
-        focus-visible:ring-alert-red
+        bg-[#DC2626] text-white
+        hover:bg-[#B91C1C] active:bg-[#991B1B]
+        focus-visible:ring-[#DC2626]
       `,
     }
 
