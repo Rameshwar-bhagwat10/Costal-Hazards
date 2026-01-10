@@ -10,6 +10,7 @@ import { HazardTrendChart } from '@/components/charts/HazardTrendChart'
 import { RegionRiskChart } from '@/components/charts/RegionRiskChart'
 import { SkeletonCard, SkeletonChart } from '@/components/ui/Skeleton'
 import { dummyReports } from '@/data/dummyReports'
+import { hazardTrendData } from '@/data/dummyAnalytics'
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -104,7 +105,7 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="grid gap-6 lg:grid-cols-2">
-            <HazardTrendChart />
+            <HazardTrendChart data={hazardTrendData['7d']} title="Hazard Trends (7 Days)" />
             <RegionRiskChart />
           </div>
         )}

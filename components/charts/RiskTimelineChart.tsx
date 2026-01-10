@@ -12,22 +12,20 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts'
-import type { HazardCount } from '@/data/dummyAnalytics'
+import type { RiskLevel } from '@/data/dummyAnalytics'
 
-interface HazardTrendChartProps {
-  data: HazardCount[]
+interface RiskTimelineChartProps {
+  data: RiskLevel[]
   title?: string
 }
 
-const HAZARD_COLORS = {
-  flood: { stroke: '#3B82F6', fill: '#3B82F6' },
-  ripCurrent: { stroke: '#EF4444', fill: '#EF4444' },
-  erosion: { stroke: '#F59E0B', fill: '#F59E0B' },
-  stormSurge: { stroke: '#8B5CF6', fill: '#8B5CF6' },
-  tsunami: { stroke: '#06B6D4', fill: '#06B6D4' },
+const RISK_COLORS = {
+  high: { stroke: '#EF4444', fill: '#EF4444' },
+  medium: { stroke: '#F59E0B', fill: '#F59E0B' },
+  low: { stroke: '#10B981', fill: '#10B981' },
 }
 
-function HazardTrendChartComponent({ data, title = 'Hazard Trends' }: HazardTrendChartProps) {
+function RiskTimelineChartComponent({ data, title = 'Risk Level Timeline' }: RiskTimelineChartProps) {
   return (
     <Card>
       <CardHeader>
@@ -38,12 +36,18 @@ function HazardTrendChartComponent({ data, title = 'Hazard Trends' }: HazardTren
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
-                {Object.entries(HAZARD_COLORS).map(([key, colors]) => (
-                  <linearGradient key={key} id={`gradient-${key}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={colors.fill} stopOpacity={0.3} />
-                    <stop offset="95%" stopColor={colors.fill} stopOpacity={0} />
-                  </linearGradient>
-                ))}
+                <linearGradient id="gradient-high" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={RISK_COLORS.high.fill} stopOpacity={0.4} />
+                  <stop offset="95%" stopColor={RISK_COLORS.high.fill} stopOpacity={0.05} />
+                </linearGradient>
+                <linearGradient id="gradient-medium" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={RISK_COLORS.medium.fill} stopOpacity={0.4} />
+                  <stop offset="95%" stopColor={RISK_COLORS.medium.fill} stopOpacity={0.05} />
+                </linearGradient>
+                <linearGradient id="gradient-low" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={RISK_COLORS.low.fill} stopOpacity={0.4} />
+                  <stop offset="95%" stopColor={RISK_COLORS.low.fill} stopOpacity={0.05} />
+                </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-soft)" vertical={false} />
               <XAxis
@@ -73,43 +77,30 @@ function HazardTrendChartComponent({ data, title = 'Hazard Trends' }: HazardTren
               />
               <Area
                 type="monotone"
-                dataKey="flood"
-                name="Flooding"
-                stroke={HAZARD_COLORS.flood.stroke}
-                fill={`url(#gradient-flood)`}
+                dataKey="high"
+                name="High Risk"
+                stroke={RISK_COLORS.high.stroke}
+                fill="url(#gradient-high)"
                 strokeWidth={2}
+                stackId="1"
               />
               <Area
                 type="monotone"
-                dataKey="ripCurrent"
-                name="Rip Current"
-                stroke={HAZARD_COLORS.ripCurrent.stroke}
-                fill={`url(#gradient-ripCurrent)`}
+                dataKey="medium"
+                name="Medium Risk"
+                stroke={RISK_COLORS.medium.stroke}
+                fill="url(#gradient-medium)"
                 strokeWidth={2}
+                stackId="1"
               />
               <Area
                 type="monotone"
-                dataKey="erosion"
-                name="Erosion"
-                stroke={HAZARD_COLORS.erosion.stroke}
-                fill={`url(#gradient-erosion)`}
+                dataKey="low"
+                name="Low Risk"
+                stroke={RISK_COLORS.low.stroke}
+                fill="url(#gradient-low)"
                 strokeWidth={2}
-              />
-              <Area
-                type="monotone"
-                dataKey="stormSurge"
-                name="Storm Surge"
-                stroke={HAZARD_COLORS.stormSurge.stroke}
-                fill={`url(#gradient-stormSurge)`}
-                strokeWidth={2}
-              />
-              <Area
-                type="monotone"
-                dataKey="tsunami"
-                name="Tsunami"
-                stroke={HAZARD_COLORS.tsunami.stroke}
-                fill={`url(#gradient-tsunami)`}
-                strokeWidth={2}
+                stackId="1"
               />
             </AreaChart>
           </ResponsiveContainer>
@@ -119,4 +110,4 @@ function HazardTrendChartComponent({ data, title = 'Hazard Trends' }: HazardTren
   )
 }
 
-export const HazardTrendChart = memo(HazardTrendChartComponent)
+export const RiskTimelineChart = memo(RiskTimelineChartComponent)
