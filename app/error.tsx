@@ -15,12 +15,12 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error])
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-bg-main">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg-main)]">
       <div className="max-w-md w-full text-center">
         {/* Error Icon */}
         <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center">
           <svg
-            className="w-10 h-10 text-alert-red"
+            className="w-10 h-10 text-[var(--alert-red)]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ export default function Error({ error, reset }: ErrorProps) {
 
         {/* Error Message */}
         <h1 className="heading-l mb-2">Something went wrong</h1>
-        <p className="text-text-secondary mb-6">
+        <p className="text-[var(--text-secondary)] mb-6">
           We encountered an unexpected error. Please try again or contact support if the problem persists.
         </p>
 
@@ -64,11 +64,11 @@ export default function Error({ error, reset }: ErrorProps) {
         </div>
 
         {/* Support Info */}
-        <p className="mt-8 text-xs text-text-secondary">
+        <p className="mt-8 text-xs text-[var(--text-secondary)]">
           If this issue continues, please contact support at{' '}
           <a
             href="mailto:support@coastalhazard.ai"
-            className="text-info-blue hover:underline"
+            className="text-[var(--info-blue)] hover:underline"
           >
             support@coastalhazard.ai
           </a>

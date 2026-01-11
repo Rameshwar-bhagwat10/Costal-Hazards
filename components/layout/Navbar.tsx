@@ -32,7 +32,7 @@ function UserMenu({ user, onLogout }: { user: { name?: string | null; email?: st
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-0.5 rounded-full hover:ring-2 hover:ring-border-soft transition-all"
+        className="p-0.5 rounded-full hover:ring-2 hover:ring-[var(--border-soft)] transition-all"
         aria-label="User menu"
       >
         {showImage ? (
@@ -53,11 +53,11 @@ function UserMenu({ user, onLogout }: { user: { name?: string | null; email?: st
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-bg-card border border-border-soft rounded-lg shadow-lg py-1 z-50">
-          <div className="px-4 py-2 border-b border-border-soft">
-            <p className="text-sm font-medium text-text-primary truncate">{displayName}</p>
+        <div className="absolute right-0 mt-2 w-48 bg-[var(--bg-card)] border border-[var(--border-soft)] rounded-lg shadow-lg py-1 z-50">
+          <div className="px-4 py-2 border-b border-[var(--border-soft)]">
+            <p className="text-sm font-medium text-[var(--text-primary)] truncate">{displayName}</p>
             {user.email && (
-              <p className="text-xs text-text-secondary truncate">{user.email}</p>
+              <p className="text-xs text-[var(--text-secondary)] truncate">{user.email}</p>
             )}
           </div>
           <button
@@ -65,7 +65,7 @@ function UserMenu({ user, onLogout }: { user: { name?: string | null; email?: st
               setIsOpen(false)
               onLogout()
             }}
-            className="w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg-muted hover:text-text-primary transition-colors"
+            className="w-full text-left px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] hover:text-[var(--text-primary)] transition-colors"
           >
             Sign out
           </button>
@@ -90,7 +90,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-bg-card border-b border-border-soft">
+    <header className="sticky top-0 z-50 bg-[var(--bg-card)] border-b border-[var(--border-soft)]">
       <nav className="container-main h-14 md:h-16 flex items-center justify-between">
         {/* Logo */}
         <Link 
@@ -104,7 +104,7 @@ export function Navbar() {
             height={36}
             className="w-8 h-8 sm:w-9 sm:h-9"
           />
-          <span className="font-semibold text-sm sm:text-base md:text-lg text-text-primary">
+          <span className="font-semibold text-sm sm:text-base md:text-lg text-[var(--text-primary)]">
             SafeCoast
           </span>
         </Link>
@@ -119,8 +119,8 @@ export function Navbar() {
                 href={getHref(route.path, isAuthRoute)}
                 className={`text-sm font-medium transition-colors ${
                   pathname === route.path
-                    ? 'text-info-blue'
-                    : 'text-text-secondary hover:text-text-primary'
+                    ? 'text-[var(--info-blue)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
                 aria-current={pathname === route.path ? 'page' : undefined}
               >
@@ -133,7 +133,7 @@ export function Navbar() {
         {/* Auth Section */}
         <div className="flex items-center gap-2">
           {isLoading ? (
-            <div className="w-16 h-8 bg-bg-muted rounded animate-pulse" />
+            <div className="w-16 h-8 bg-[var(--bg-muted)] rounded animate-pulse" />
           ) : isLoggedIn && user ? (
             <UserMenu user={user} onLogout={logout} />
           ) : (

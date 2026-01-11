@@ -38,12 +38,12 @@ export default function AnalyticsPage() {
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold text-text-primary">Analytics</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">Analytics</h1>
             <Badge variant="info" size="sm">Live</Badge>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-sm text-text-secondary">
+          <p className="text-sm text-[var(--text-secondary)]">
             Hazard trends for {timeRangeLabels[timeRange].toLowerCase()}
           </p>
           <TimeFilter value={timeRange} onChange={setTimeRange} />

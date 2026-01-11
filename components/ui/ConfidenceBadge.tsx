@@ -86,7 +86,7 @@ export function FreshnessIndicator({ timestamp }: { timestamp: string }) {
     <span
       className={`
         inline-flex items-center gap-1 text-xs
-        ${fresh ? 'text-green-600' : 'text-text-secondary'}
+        ${fresh ? 'text-green-600' : 'text-[var(--text-secondary)]'}
       `}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${fresh ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`} />

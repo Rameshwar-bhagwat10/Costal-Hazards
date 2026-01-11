@@ -47,7 +47,7 @@ export function FeedFiltersComponent({
   }
 
   return (
-    <div className="bg-white rounded-lg border border-border-soft p-3 mb-4">
+    <div className="bg-white rounded-lg border border-[var(--border-soft)] p-3 mb-4">
       {/* Mobile-friendly horizontal scroll */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
         {/* Near Me Toggle */}
@@ -119,14 +119,14 @@ export function FeedFiltersComponent({
           </button>
 
           {showCategoryDropdown && (
-            <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-border-soft py-2 z-30 min-w-[160px]">
+            <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-[var(--border-soft)] py-2 z-30 min-w-[160px]">
               <button
                 onClick={selectAllCategories}
                 className="w-full px-3 py-2 text-left text-sm text-[#2563EB] hover:bg-gray-50"
               >
                 Select All
               </button>
-              <div className="border-t border-border-soft my-1" />
+              <div className="border-t border-[var(--border-soft)] my-1" />
               {categories.map(category => (
                 <label
                   key={category}

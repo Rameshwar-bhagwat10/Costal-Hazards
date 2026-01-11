@@ -16,10 +16,10 @@ const MapContainer = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full bg-bg-muted flex items-center justify-center">
+      <div className="w-full h-full bg-[var(--bg-muted)] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-info-blue border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-text-secondary">Loading map...</p>
+          <div className="w-12 h-12 border-4 border-[var(--info-blue)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[var(--text-secondary)]">Loading map...</p>
         </div>
       </div>
     ),
@@ -82,7 +82,7 @@ export default function MapPage() {
   return (
     <div className="h-[calc(100vh-8rem)] lg:h-[calc(100vh-10rem)] flex flex-col -mx-4 sm:-mx-6 lg:-mx-8 -my-6 md:-my-8">
       {/* Header */}
-      <div className="bg-bg-card border-b border-border-soft px-4 py-3">
+      <div className="bg-[var(--bg-card)] border-b border-[var(--border-soft)] px-4 py-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-lg md:text-xl font-semibold flex items-center gap-2">
@@ -91,7 +91,7 @@ export default function MapPage() {
               </svg>
               Safety Map
             </h1>
-            <p className="text-xs md:text-sm text-text-secondary mt-0.5">
+            <p className="text-xs md:text-sm text-[var(--text-secondary)] mt-0.5">
               Real-time hazard monitoring across Indian coastline • Tap markers for details
             </p>
           </div>
@@ -101,30 +101,30 @@ export default function MapPage() {
             {/* Quick Stats */}
             <div className="hidden md:flex items-center gap-4 text-sm">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-alert-red animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[var(--alert-red)] animate-pulse" />
                 <span className="font-medium">{stats.high}</span>
-                <span className="text-text-secondary">High</span>
+                <span className="text-[var(--text-secondary)]">High</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-warning-orange" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[var(--warning-orange)]" />
                 <span className="font-medium">{stats.medium}</span>
-                <span className="text-text-secondary">Medium</span>
+                <span className="text-[var(--text-secondary)]">Medium</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-safe-green" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[var(--safe-green)]" />
                 <span className="font-medium">{stats.low}</span>
-                <span className="text-text-secondary">Low</span>
+                <span className="text-[var(--text-secondary)]">Low</span>
               </span>
             </div>
             
             {/* Help Button */}
             <button
               onClick={() => setShowHelp(true)}
-              className="p-2 rounded-lg hover:bg-bg-muted transition-colors"
+              className="p-2 rounded-lg hover:bg-[var(--bg-muted)] transition-colors"
               aria-label="Map help"
               title="How to use this map"
             >
-              <svg className="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </button>
@@ -134,18 +134,18 @@ export default function MapPage() {
         {/* Mobile Stats */}
         <div className="flex md:hidden items-center gap-3 mt-2 text-xs">
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-alert-red" />
+            <span className="w-2 h-2 rounded-full bg-[var(--alert-red)]" />
             {stats.high} High
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-warning-orange" />
+            <span className="w-2 h-2 rounded-full bg-[var(--warning-orange)]" />
             {stats.medium} Med
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-safe-green" />
+            <span className="w-2 h-2 rounded-full bg-[var(--safe-green)]" />
             {stats.low} Low
           </span>
-          <span className="text-text-secondary">• {stats.total} total</span>
+          <span className="text-[var(--text-secondary)]">• {stats.total} total</span>
         </div>
       </div>
 
@@ -170,7 +170,7 @@ export default function MapPage() {
         <MapLegend />
         
         {/* Zoom Controls Hint - shown briefly */}
-        <div className="absolute bottom-20 left-4 z-400 bg-bg-card/90 backdrop-blur-sm rounded-lg px-3 py-2 text-xs text-text-secondary shadow-md pointer-events-none lg:hidden">
+        <div className="absolute bottom-20 left-4 z-[400] bg-[var(--bg-card)]/90 backdrop-blur-sm rounded-lg px-3 py-2 text-xs text-[var(--text-secondary)] shadow-md pointer-events-none lg:hidden">
           <span>Pinch to zoom • Drag to pan</span>
         </div>
         

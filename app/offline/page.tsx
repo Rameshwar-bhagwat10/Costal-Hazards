@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function OfflinePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-bg-main">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg-main)]">
       <div className="max-w-md w-full text-center">
         {/* Offline Icon */}
         <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-amber-100 flex items-center justify-center">
@@ -25,19 +25,19 @@ export default function OfflinePage() {
         </div>
 
         {/* Message */}
-        <h1 className="text-2xl font-bold text-text-primary mb-2">
+        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
           You&apos;re Offline
         </h1>
-        <p className="text-text-secondary mb-6">
+        <p className="text-[var(--text-secondary)] mb-6">
           It looks like you&apos;ve lost your internet connection. Some features may be unavailable until you&apos;re back online.
         </p>
 
         {/* Available Actions */}
-        <div className="bg-white rounded-lg border border-border-soft p-4 mb-6">
-          <h2 className="text-sm font-semibold text-text-primary mb-3">
+        <div className="bg-white rounded-lg border border-[var(--border-soft)] p-4 mb-6">
+          <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-3">
             While offline, you can:
           </h2>
-          <ul className="text-sm text-text-secondary space-y-2 text-left">
+          <ul className="text-sm text-[var(--text-secondary)] space-y-2 text-left">
             <li className="flex items-center gap-2">
               <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

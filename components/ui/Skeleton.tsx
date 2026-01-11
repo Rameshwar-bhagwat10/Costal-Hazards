@@ -9,7 +9,7 @@ interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
 
 const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
   ({ variant = 'rectangular', width, height, shimmer = true, className = '', style, ...props }, ref) => {
-    const baseStyles = 'bg-bg-muted'
+    const baseStyles = 'bg-[var(--bg-muted)]'
     const shimmerStyles = shimmer ? 'relative overflow-hidden' : 'animate-pulse'
 
     const variants = {
@@ -42,7 +42,7 @@ Skeleton.displayName = 'Skeleton'
 
 function SkeletonCard() {
   return (
-    <div className="bg-bg-card rounded-lg border border-border-soft p-4 space-y-3">
+    <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-soft)] p-4 space-y-3">
       <div className="flex items-center gap-2">
         <Skeleton height={24} width={80} />
         <Skeleton height={24} width={60} />
@@ -59,7 +59,7 @@ function SkeletonCard() {
 
 function SkeletonReportCard() {
   return (
-    <div className="bg-bg-card rounded-lg border border-border-soft p-4 space-y-3">
+    <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-soft)] p-4 space-y-3">
       <div className="flex items-center gap-2">
         <Skeleton height={24} width={80} />
         <Skeleton height={24} width={70} />
@@ -77,7 +77,7 @@ function SkeletonReportCard() {
 
 function SkeletonChart() {
   return (
-    <div className="bg-bg-card rounded-lg border border-border-soft p-4">
+    <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-soft)] p-4">
       <Skeleton height={24} width="40%" className="mb-4" />
       <div className="space-y-2">
         <Skeleton height={200} width="100%" />
@@ -95,7 +95,7 @@ function SkeletonStats() {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="bg-bg-card rounded-lg border border-border-soft p-4">
+        <div key={i} className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-soft)] p-4">
           <div className="flex items-start justify-between">
             <div className="space-y-2">
               <Skeleton height={32} width={60} />
@@ -111,10 +111,10 @@ function SkeletonStats() {
 
 function SkeletonMap() {
   return (
-    <div className="w-full h-full bg-bg-muted flex items-center justify-center">
+    <div className="w-full h-full bg-[var(--bg-muted)] flex items-center justify-center">
       <div className="text-center">
-        <div className="w-12 h-12 border-4 border-info-blue border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-text-secondary text-sm">Loading map...</p>
+        <div className="w-12 h-12 border-4 border-[var(--info-blue)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-[var(--text-secondary)] text-sm">Loading map...</p>
       </div>
     </div>
   )

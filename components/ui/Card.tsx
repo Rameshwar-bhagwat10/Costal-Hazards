@@ -10,8 +10,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = 'rounded-lg border'
 
     const variants = {
-      default: 'bg-bg-card border-border-soft shadow-md',
-      muted: 'bg-bg-muted border-border-soft shadow-sm',
+      default: 'bg-[var(--bg-card)] border-[var(--border-soft)] shadow-md',
+      muted: 'bg-[var(--bg-muted)] border-[var(--border-soft)] shadow-sm',
     }
 
     const paddings = {

@@ -24,7 +24,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         shadow-sm hover:shadow-md
       `,
       secondary: `
-        bg-bg-muted text-text-primary border border-border-soft
+        bg-[var(--bg-muted)] text-[var(--text-primary)] border border-[var(--border-soft)]
         hover:bg-gray-200 active:bg-gray-300
         focus-visible:ring-gray-400
       `,

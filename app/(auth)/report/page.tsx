@@ -46,7 +46,7 @@ export default function ReportPage() {
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
         <h1 className="heading-l mb-2">Report Hazard</h1>
-        <p className="text-text-secondary">
+        <p className="text-[var(--text-secondary)]">
           Submit a hazard report to help keep coastal communities safe across India.
         </p>
       </div>

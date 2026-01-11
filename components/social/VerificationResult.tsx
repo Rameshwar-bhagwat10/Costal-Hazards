@@ -25,7 +25,7 @@ export function VerificationResult({ result, onVerifyAnother }: VerificationResu
       ),
       bgColor: 'bg-green-50',
       borderColor: 'border-green-200',
-      textColor: 'text-safe-green',
+      textColor: 'text-[var(--safe-green)]',
     },
     uncertain: {
       label: 'Uncertain',
@@ -37,7 +37,7 @@ export function VerificationResult({ result, onVerifyAnother }: VerificationResu
       ),
       bgColor: 'bg-orange-50',
       borderColor: 'border-orange-200',
-      textColor: 'text-warning-orange',
+      textColor: 'text-[var(--warning-orange)]',
     },
     likely_false: {
       label: 'Likely False',
@@ -49,16 +49,16 @@ export function VerificationResult({ result, onVerifyAnother }: VerificationResu
       ),
       bgColor: 'bg-red-50',
       borderColor: 'border-red-200',
-      textColor: 'text-alert-red',
+      textColor: 'text-[var(--alert-red)]',
     },
   }
 
   const config = statusConfig[result.status]
 
   const getScoreColor = (score: number) => {
-    if (score >= 70) return 'bg-safe-green'
-    if (score >= 45) return 'bg-warning-orange'
-    return 'bg-alert-red'
+    if (score >= 70) return 'bg-[var(--safe-green)]'
+    if (score >= 45) return 'bg-[var(--warning-orange)]'
+    return 'bg-[var(--alert-red)]'
   }
 
   const copyResult = async () => {
@@ -91,7 +91,7 @@ Advice: ${result.advice}`
             {/* Confidence Meter */}
             <div className="w-full max-w-xs mb-4">
               <div className="flex justify-between text-sm mb-1">
-                <span className="text-text-secondary">Confidence Score</span>
+                <span className="text-[var(--text-secondary)]">Confidence Score</span>
                 <span className={`font-bold ${config.textColor}`}>{result.confidenceScore}%</span>
               </div>
               <div className="h-3 bg-white rounded-full overflow-hidden shadow-inner">
@@ -103,7 +103,7 @@ Advice: ${result.advice}`
             </div>
 
             {/* Explanation */}
-            <p className="text-sm text-text-primary leading-relaxed">
+            <p className="text-sm text-[var(--text-primary)] leading-relaxed">
               {result.explanation}
             </p>
           </div>
@@ -120,22 +120,22 @@ Advice: ${result.advice}`
             {result.factors.map((factor, index) => (
               <div key={index}>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-sm font-medium text-text-primary">{factor.label}</span>
+                  <span className="text-sm font-medium text-[var(--text-primary)]">{factor.label}</span>
                   <span className={`text-sm font-bold ${
-                    factor.score >= 70 ? 'text-safe-green' :
-                    factor.score >= 45 ? 'text-warning-orange' :
-                    'text-alert-red'
+                    factor.score >= 70 ? 'text-[var(--safe-green)]' :
+                    factor.score >= 45 ? 'text-[var(--warning-orange)]' :
+                    'text-[var(--alert-red)]'
                   }`}>
                     {factor.score}%
                   </span>
                 </div>
-                <div className="h-2 bg-bg-muted rounded-full overflow-hidden mb-1">
+                <div className="h-2 bg-[var(--bg-muted)] rounded-full overflow-hidden mb-1">
                   <div
                     className={`h-full ${getScoreColor(factor.score)} transition-all duration-700`}
                     style={{ width: `${factor.score}%` }}
                   />
                 </div>
-                <p className="text-xs text-text-secondary">{factor.description}</p>
+                <p className="text-xs text-[var(--text-secondary)]">{factor.description}</p>
               </div>
             ))}
           </div>
@@ -147,7 +147,7 @@ Advice: ${result.advice}`
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2">
-              <svg className="w-5 h-5 text-info-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[var(--info-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
               Matching Ground Reports
@@ -158,13 +158,13 @@ Advice: ${result.advice}`
               {result.matchingReports.map((report) => (
                 <div
                   key={report.id}
-                  className="p-3 bg-bg-muted rounded-lg border border-border-soft"
+                  className="p-3 bg-[var(--bg-muted)] rounded-lg border border-[var(--border-soft)]"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h4 className="text-sm font-medium text-text-primary">{report.title}</h4>
+                    <h4 className="text-sm font-medium text-[var(--text-primary)]">{report.title}</h4>
                     <Badge variant="info" className="text-xs">{report.similarity}% match</Badge>
                   </div>
-                  <p className="text-xs text-text-secondary">
+                  <p className="text-xs text-[var(--text-secondary)]">
                     {report.location} • {report.date}
                   </p>
                 </div>
@@ -178,14 +178,14 @@ Advice: ${result.advice}`
       <Card className="bg-blue-50 border-blue-200 border">
         <CardContent className="pt-4">
           <div className="flex gap-3">
-            <div className="shrink-0">
-              <svg className="w-6 h-6 text-info-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex-shrink-0">
+              <svg className="w-6 h-6 text-[var(--info-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-info-blue mb-1">Recommendation</h4>
-              <p className="text-sm text-text-primary">{result.advice}</p>
+              <h4 className="text-sm font-semibold text-[var(--info-blue)] mb-1">Recommendation</h4>
+              <p className="text-sm text-[var(--text-primary)]">{result.advice}</p>
             </div>
           </div>
         </CardContent>

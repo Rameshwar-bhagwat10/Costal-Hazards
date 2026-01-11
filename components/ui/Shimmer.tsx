@@ -25,7 +25,7 @@ export function Shimmer({
 
   return (
     <div
-      className={`relative overflow-hidden bg-bg-muted ${roundedClasses[rounded]} ${className}`}
+      className={`relative overflow-hidden bg-[var(--bg-muted)] ${roundedClasses[rounded]} ${className}`}
       style={{ width, height }}
       aria-hidden="true"
       {...props}

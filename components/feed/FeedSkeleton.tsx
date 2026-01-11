@@ -6,7 +6,7 @@ export function FeedSkeleton() {
       {[1, 2, 3].map((i) => (
         <div
           key={i}
-          className="bg-white rounded-lg border-2 border-border-soft p-4 animate-pulse"
+          className="bg-white rounded-lg border-2 border-[var(--border-soft)] p-4 animate-pulse"
         >
           {/* Top Row */}
           <div className="flex items-center justify-between mb-3">
@@ -33,7 +33,7 @@ export function FeedSkeleton() {
           </div>
 
           {/* Bottom Row */}
-          <div className="flex items-center justify-between pt-3 border-t border-border-soft">
+          <div className="flex items-center justify-between pt-3 border-t border-[var(--border-soft)]">
             <div className="flex items-center gap-2">
               <div className="h-9 w-9 bg-gray-200 rounded-lg" />
               <div className="h-5 w-10 bg-gray-200 rounded" />

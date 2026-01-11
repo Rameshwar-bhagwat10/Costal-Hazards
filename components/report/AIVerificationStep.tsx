@@ -74,9 +74,9 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
   const hazard = hazardTypes.find((h) => h.id === data.hazardType)
 
   const statusConfig = {
-    verified: { variant: 'safe' as const, label: 'Verified', color: 'text-safe-green' },
-    'needs-review': { variant: 'warning' as const, label: 'Needs Review', color: 'text-warning-orange' },
-    'low-trust': { variant: 'alert' as const, label: 'Low Trust', color: 'text-alert-red' },
+    verified: { variant: 'safe' as const, label: 'Verified', color: 'text-[var(--safe-green)]' },
+    'needs-review': { variant: 'warning' as const, label: 'Needs Review', color: 'text-[var(--warning-orange)]' },
+    'low-trust': { variant: 'alert' as const, label: 'Low Trust', color: 'text-[var(--alert-red)]' },
   }
 
   const urgencyConfig = {
@@ -98,19 +98,19 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
                 key={step.id}
                 className={`
                   flex items-center gap-3 p-3 rounded-lg transition-all
-                  ${step.status === 'processing' ? 'bg-blue-50' : 'bg-bg-muted'}
+                  ${step.status === 'processing' ? 'bg-blue-50' : 'bg-[var(--bg-muted)]'}
                 `}
               >
                 {/* Status Icon */}
                 <div className="w-6 h-6 flex items-center justify-center">
                   {step.status === 'complete' ? (
-                    <svg className="w-5 h-5 text-safe-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[var(--safe-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   ) : step.status === 'processing' ? (
-                    <div className="w-5 h-5 border-2 border-info-blue border-t-transparent rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-[var(--info-blue)] border-t-transparent rounded-full animate-spin" />
                   ) : (
-                    <div className="w-5 h-5 rounded-full border-2 border-border-soft" />
+                    <div className="w-5 h-5 rounded-full border-2 border-[var(--border-soft)]" />
                   )}
                 </div>
 
@@ -118,9 +118,9 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
                 <span
                   className={`
                     text-sm font-medium
-                    ${step.status === 'complete' ? 'text-safe-green' : ''}
-                    ${step.status === 'processing' ? 'text-info-blue' : ''}
-                    ${step.status === 'pending' ? 'text-text-secondary' : ''}
+                    ${step.status === 'complete' ? 'text-[var(--safe-green)]' : ''}
+                    ${step.status === 'processing' ? 'text-[var(--info-blue)]' : ''}
+                    ${step.status === 'pending' ? 'text-[var(--text-secondary)]' : ''}
                   `}
                 >
                   {step.label}
@@ -128,8 +128,8 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
                 {/* Processing shimmer */}
                 {step.status === 'processing' && (
-                  <div className="flex-1 h-2 bg-bg-muted rounded overflow-hidden">
-                    <div className="h-full w-1/2 bg-info-blue rounded animate-pulse" />
+                  <div className="flex-1 h-2 bg-[var(--bg-muted)] rounded overflow-hidden">
+                    <div className="h-full w-1/2 bg-[var(--info-blue)] rounded animate-pulse" />
                   </div>
                 )}
               </div>
@@ -139,8 +139,8 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
         {/* Error State */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-alert-red rounded-lg">
-            <p className="text-alert-red">{error}</p>
+          <div className="mb-6 p-4 bg-red-50 border border-[var(--alert-red)] rounded-lg">
+            <p className="text-[var(--alert-red)]">{error}</p>
             <Button variant="secondary" size="sm" className="mt-2" onClick={runVerification}>
               Retry
             </Button>
@@ -149,7 +149,7 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
         {/* Result Card */}
         {result && (
-          <div className="mb-6 p-4 bg-bg-muted rounded-lg border border-border-soft">
+          <div className="mb-6 p-4 bg-[var(--bg-muted)] rounded-lg border border-[var(--border-soft)]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold">Verification Result</h3>
               <Badge variant={statusConfig[result.status].variant}>
@@ -159,7 +159,7 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
             {/* Detected Hazard */}
             <div className="mb-3">
-              <span className="text-sm text-text-secondary">Detected Hazard:</span>
+              <span className="text-sm text-[var(--text-secondary)]">Detected Hazard:</span>
               <div className="flex items-center gap-2 mt-1">
                 <span
                   className="w-3 h-3 rounded-full"
@@ -171,16 +171,16 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
             {/* Confidence Score */}
             <div className="mb-3">
-              <span className="text-sm text-text-secondary">Confidence Score:</span>
+              <span className="text-sm text-[var(--text-secondary)]">Confidence Score:</span>
               <div className="flex items-center gap-3 mt-1">
-                <div className="flex-1 h-3 bg-bg-card rounded-full overflow-hidden">
+                <div className="flex-1 h-3 bg-[var(--bg-card)] rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-1000 ${
                       result.confidence >= 80
-                        ? 'bg-safe-green'
+                        ? 'bg-[var(--safe-green)]'
                         : result.confidence >= 50
-                          ? 'bg-warning-orange'
-                          : 'bg-alert-red'
+                          ? 'bg-[var(--warning-orange)]'
+                          : 'bg-[var(--alert-red)]'
                     }`}
                     style={{ width: `${result.confidence}%` }}
                   />
@@ -193,7 +193,7 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
             {/* Urgency */}
             <div className="mb-3">
-              <span className="text-sm text-text-secondary">Urgency Level:</span>
+              <span className="text-sm text-[var(--text-secondary)]">Urgency Level:</span>
               <div className="mt-1">
                 <Badge variant={urgencyConfig[result.urgency].variant}>
                   {urgencyConfig[result.urgency].label}
@@ -203,7 +203,7 @@ export function AIVerificationStep({ data, onComplete, onBack }: AIVerificationS
 
             {/* AI Summary */}
             <div>
-              <span className="text-sm text-text-secondary">AI Summary:</span>
+              <span className="text-sm text-[var(--text-secondary)]">AI Summary:</span>
               <p className="mt-1 text-sm">{result.summary}</p>
             </div>
           </div>

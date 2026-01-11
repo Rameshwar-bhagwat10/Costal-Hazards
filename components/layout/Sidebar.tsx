@@ -14,11 +14,11 @@ export function Sidebar() {
 
   return (
     <aside
-      className={`flex flex-col bg-bg-card border-r border-border-soft transition-all duration-300 h-screen sticky top-0 ${
+      className={`flex flex-col bg-[var(--bg-card)] border-r border-[var(--border-soft)] transition-all duration-300 h-screen sticky top-0 ${
         collapsed ? 'w-16' : 'w-64'
       }`}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b border-border-soft">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-[var(--border-soft)]">
         {!collapsed && (
           <div className="flex items-center gap-2">
             <Image
@@ -28,7 +28,7 @@ export function Sidebar() {
               height={28}
               className="w-7 h-7"
             />
-            <span className="font-semibold text-text-primary">Dashboard</span>
+            <span className="font-semibold text-[var(--text-primary)]">Dashboard</span>
           </div>
         )}
         {collapsed && (
@@ -42,7 +42,7 @@ export function Sidebar() {
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded hover:bg-bg-muted transition-colors"
+          className="p-2 rounded hover:bg-[var(--bg-muted)] transition-colors"
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@ export function Sidebar() {
       <nav className="flex-1 py-4 overflow-y-auto">
         <div className="px-3 mb-4">
           {!collapsed && (
-            <p className="px-3 mb-2 text-xs font-semibold uppercase text-text-secondary">
+            <p className="px-3 mb-2 text-xs font-semibold uppercase text-[var(--text-secondary)]">
               Public
             </p>
           )}
@@ -76,7 +76,7 @@ export function Sidebar() {
 
         <div className="px-3">
           {!collapsed && (
-            <p className="px-3 mb-2 text-xs font-semibold uppercase text-text-secondary">
+            <p className="px-3 mb-2 text-xs font-semibold uppercase text-[var(--text-secondary)]">
               Protected
             </p>
           )}
@@ -92,10 +92,10 @@ export function Sidebar() {
         </div>
       </nav>
 
-      <div className="p-3 border-t border-border-soft">
+      <div className="p-3 border-t border-[var(--border-soft)]">
         <button
           onClick={logout}
-          className={`flex items-center gap-3 w-full px-3 py-2 rounded text-sm font-medium text-alert-red hover:bg-red-50 transition-colors ${
+          className={`flex items-center gap-3 w-full px-3 py-2 rounded text-sm font-medium text-[var(--alert-red)] hover:bg-red-50 transition-colors ${
             collapsed ? 'justify-center' : ''
           }`}
         >
@@ -115,8 +115,8 @@ function SidebarLink({ href, label, isActive, collapsed }: { href: string; label
       href={href}
       className={`flex items-center gap-3 px-3 py-2 rounded text-sm font-medium transition-colors ${
         isActive
-          ? 'bg-info-blue text-white'
-          : 'text-text-secondary hover:bg-bg-muted hover:text-text-primary'
+          ? 'bg-[var(--info-blue)] text-white'
+          : 'text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] hover:text-[var(--text-primary)]'
       } ${collapsed ? 'justify-center' : ''}`}
       aria-current={isActive ? 'page' : undefined}
       title={collapsed ? label : undefined}

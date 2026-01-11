@@ -30,14 +30,14 @@ export function SubmissionSuccess({ data, result, onSubmitAnother }: SubmissionS
         {/* Success Animation */}
         <div className="mb-6">
           <div className="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center animate-bounce">
-            <svg className="w-10 h-10 text-safe-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10 text-[var(--safe-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
         </div>
 
         <h2 className="heading-l mb-2">Report Submitted!</h2>
-        <p className="text-text-secondary mb-6">
+        <p className="text-[var(--text-secondary)] mb-6">
           Your hazard report has been sent for public awareness.
         </p>
 
@@ -56,24 +56,24 @@ export function SubmissionSuccess({ data, result, onSubmitAnother }: SubmissionS
 
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-text-secondary">Location:</span>
+              <span className="text-[var(--text-secondary)]">Location:</span>
               <span>{data.location?.address}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-secondary">Confidence:</span>
+              <span className="text-[var(--text-secondary)]">Confidence:</span>
               <span className="font-medium">{result.confidence}%</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-secondary">Media:</span>
+              <span className="text-[var(--text-secondary)]">Media:</span>
               <span>{data.media.length} file(s)</span>
             </div>
           </div>
         </div>
 
         {/* What Happens Next */}
-        <div className="bg-bg-muted rounded-lg p-4 mb-6 text-left">
+        <div className="bg-[var(--bg-muted)] rounded-lg p-4 mb-6 text-left">
           <h3 className="font-semibold mb-2">What happens next?</h3>
-          <ul className="text-sm text-text-secondary space-y-1">
+          <ul className="text-sm text-[var(--text-secondary)] space-y-1">
             <li>• Your report will appear on the public safety map</li>
             <li>• Nearby users will receive alerts</li>
             <li>• Authorities may be notified for high-risk hazards</li>

@@ -74,7 +74,7 @@ export function BottomNav() {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-bg-card border-t border-border-soft z-50 safe-area-bottom">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--bg-card)] border-t border-[var(--border-soft)] z-50 safe-area-bottom">
       <div className="flex justify-around items-center h-16">
         {navItems.map((item) => {
           const isActive = pathname === item.path
@@ -88,8 +88,8 @@ export function BottomNav() {
                 flex flex-col items-center justify-center flex-1 h-full py-2
                 transition-colors relative
                 ${isActive
-                  ? 'text-info-blue'
-                  : 'text-text-secondary hover:text-text-primary'
+                  ? 'text-[var(--info-blue)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }
               `}
               aria-current={isActive ? 'page' : undefined}
@@ -99,7 +99,7 @@ export function BottomNav() {
               </div>
               <span className="text-xs mt-1 font-medium">{item.label}</span>
               {isActive && (
-                <span className="absolute bottom-1 w-1 h-1 rounded-full bg-info-blue" />
+                <span className="absolute bottom-1 w-1 h-1 rounded-full bg-[var(--info-blue)]" />
               )}
             </Link>
           )

@@ -43,7 +43,7 @@ export function TrustTips() {
     <Card>
       <CardHeader>
         <CardTitle className="text-base flex items-center gap-2">
-          <svg className="w-5 h-5 text-info-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-[var(--info-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
           Understanding Misinformation
@@ -54,19 +54,19 @@ export function TrustTips() {
           {TIPS.map((tip) => (
             <div
               key={tip.id}
-              className="border border-border-soft rounded-lg overflow-hidden"
+              className="border border-[var(--border-soft)] rounded-lg overflow-hidden"
             >
               <button
                 type="button"
                 onClick={() => setExpandedTip(expandedTip === tip.id ? null : tip.id)}
-                className="w-full flex items-center gap-3 p-3 text-left hover:bg-bg-muted transition-colors"
+                className="w-full flex items-center gap-3 p-3 text-left hover:bg-[var(--bg-muted)] transition-colors"
               >
-                <div className="text-info-blue">{tip.icon}</div>
-                <span className="flex-1 text-sm font-medium text-text-primary">
+                <div className="text-[var(--info-blue)]">{tip.icon}</div>
+                <span className="flex-1 text-sm font-medium text-[var(--text-primary)]">
                   {tip.title}
                 </span>
                 <svg
-                  className={`w-5 h-5 text-text-secondary transition-transform ${
+                  className={`w-5 h-5 text-[var(--text-secondary)] transition-transform ${
                     expandedTip === tip.id ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -79,7 +79,7 @@ export function TrustTips() {
               
               {expandedTip === tip.id && (
                 <div className="px-3 pb-3 pt-0">
-                  <p className="text-sm text-text-secondary leading-relaxed pl-8">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed pl-8">
                     {tip.content}
                   </p>
                 </div>
@@ -89,19 +89,19 @@ export function TrustTips() {
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-4 p-3 bg-bg-muted rounded-lg">
+        <div className="mt-4 p-3 bg-[var(--bg-muted)] rounded-lg">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <p className="text-lg font-bold text-info-blue">6x</p>
-              <p className="text-xs text-text-secondary">Faster spread</p>
+              <p className="text-lg font-bold text-[var(--info-blue)]">6x</p>
+              <p className="text-xs text-[var(--text-secondary)]">Faster spread</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-warning-orange">70%</p>
-              <p className="text-xs text-text-secondary">Share without reading</p>
+              <p className="text-lg font-bold text-[var(--warning-orange)]">70%</p>
+              <p className="text-xs text-[var(--text-secondary)]">Share without reading</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-safe-green">89%</p>
-              <p className="text-xs text-text-secondary">Accuracy with verification</p>
+              <p className="text-lg font-bold text-[var(--safe-green)]">89%</p>
+              <p className="text-xs text-[var(--text-secondary)]">Accuracy with verification</p>
             </div>
           </div>
         </div>

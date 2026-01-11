@@ -48,7 +48,7 @@ export function InstallPrompt() {
 
   return (
     <div className="fixed bottom-20 md:bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 z-50 animate-slide-up">
-      <div className="bg-white rounded-xl shadow-xl border border-border-soft p-4">
+      <div className="bg-white rounded-xl shadow-xl border border-[var(--border-soft)] p-4">
         <div className="flex items-start gap-3">
           {/* App Icon */}
           <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shrink-0">
@@ -58,10 +58,10 @@ export function InstallPrompt() {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-text-primary mb-1">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
               Install SafeCoast
             </h3>
-            <p className="text-xs text-text-secondary mb-3">
+            <p className="text-xs text-[var(--text-secondary)] mb-3">
               Get instant access to hazard alerts and report emergencies even when offline.
             </p>
 
@@ -71,7 +71,7 @@ export function InstallPrompt() {
               </Button>
               <button
                 onClick={handleDismiss}
-                className="px-3 py-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
+                className="px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
               >
                 Not now
               </button>
@@ -91,7 +91,7 @@ export function InstallPrompt() {
         </div>
 
         {/* Features */}
-        <div className="mt-3 pt-3 border-t border-border-soft flex items-center gap-4 text-xs text-text-secondary">
+        <div className="mt-3 pt-3 border-t border-[var(--border-soft)] flex items-center gap-4 text-xs text-[var(--text-secondary)]">
           <span className="flex items-center gap-1">
             <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

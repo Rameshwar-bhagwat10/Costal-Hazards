@@ -19,7 +19,7 @@ export function StatsCards({ stats, extraReports = 0 }: StatsCardsProps) {
     {
       label: 'Alerts Today',
       value: 12 + extraReports,
-      color: 'text-alert-red',
+      color: 'text-[var(--alert-red)]',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -29,7 +29,7 @@ export function StatsCards({ stats, extraReports = 0 }: StatsCardsProps) {
     {
       label: 'High Risk Zones',
       value: 3,
-      color: 'text-warning-orange',
+      color: 'text-[var(--warning-orange)]',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -40,7 +40,7 @@ export function StatsCards({ stats, extraReports = 0 }: StatsCardsProps) {
     {
       label: 'Verified Reports',
       value: 48 + extraReports,
-      color: 'text-safe-green',
+      color: 'text-[var(--safe-green)]',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -50,7 +50,7 @@ export function StatsCards({ stats, extraReports = 0 }: StatsCardsProps) {
     {
       label: 'Active Regions',
       value: 5,
-      color: 'text-info-blue',
+      color: 'text-[var(--info-blue)]',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
@@ -67,10 +67,10 @@ export function StatsCards({ stats, extraReports = 0 }: StatsCardsProps) {
         <Card key={stat.label} padding="md" className="hover:shadow-lg transition-shadow">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-3xl font-bold text-text-primary">{stat.value}</p>
-              <p className="text-sm text-text-secondary mt-1">{stat.label}</p>
+              <p className="text-3xl font-bold text-[var(--text-primary)]">{stat.value}</p>
+              <p className="text-sm text-[var(--text-secondary)] mt-1">{stat.label}</p>
             </div>
-            <div className={`${stat.color} p-2 bg-bg-muted rounded-lg`}>
+            <div className={`${stat.color} p-2 bg-[var(--bg-muted)] rounded-lg`}>
               {stat.icon}
             </div>
           </div>

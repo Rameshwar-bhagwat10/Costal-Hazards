@@ -21,14 +21,14 @@ export function ReportFilters({
   onTimeChange,
 }: ReportFiltersProps) {
   const selectStyles = `
-    px-3 py-2 rounded-lg border border-border-soft 
-    bg-bg-card text-sm text-text-primary
-    focus:outline-none focus:ring-2 focus:ring-info-blue
+    px-3 py-2 rounded-lg border border-[var(--border-soft)] 
+    bg-[var(--bg-card)] text-sm text-[var(--text-primary)]
+    focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)]
     cursor-pointer min-w-[140px]
   `
 
   return (
-    <div className="sticky top-16 z-40 bg-bg-main py-3 -mx-4 px-4 md:mx-0 md:px-0">
+    <div className="sticky top-16 z-40 bg-[var(--bg-main)] py-3 -mx-4 px-4 md:mx-0 md:px-0">
       <div className="flex gap-3 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
         <select
           value={selectedHazard}
