@@ -34,9 +34,9 @@ export function Navbar() {
             alt="Coastal Hazard AI Logo"
             width={36}
             height={36}
-            className="w-9 h-9"
+            className="w-8 h-8 sm:w-9 sm:h-9"
           />
-          <span className="hidden sm:inline font-semibold text-base md:text-lg text-[var(--text-primary)]">
+          <span className="font-semibold text-sm sm:text-base md:text-lg text-[var(--text-primary)]">
             Coastal Hazard AI
           </span>
         </Link>
