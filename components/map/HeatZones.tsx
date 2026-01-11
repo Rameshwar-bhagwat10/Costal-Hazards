@@ -11,7 +11,7 @@ interface HeatZonesProps {
 const riskColors = {
   high: { color: '#EF4444', fillColor: '#EF4444', fillOpacity: 0.3 },
   medium: { color: '#F59E0B', fillColor: '#F59E0B', fillOpacity: 0.25 },
-  low: { color: '#FBBF24', fillColor: '#FBBF24', fillOpacity: 0.2 },
+  low: { color: '#22C55E', fillColor: '#22C55E', fillOpacity: 0.2 },
 }
 
 export function HeatZones({ selectedHazards, onZoneClick }: HeatZonesProps) {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useCallback, useSyncExternalStore } from 'react'
-import { MapContainer as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer as LeafletMap, TileLayer, Marker, Tooltip } from 'react-leaflet'
 import L from 'leaflet'
 import { HeatZones } from './HeatZones'
 import { hazardTypes } from '@/data/hazardTypes'
@@ -23,22 +23,31 @@ interface ExtendedMapReport extends MapReport {
   locationName?: string
 }
 
-const createHazardIcon = (color: string) => {
+// Severity-based colors (Red, Orange, Green)
+const SEVERITY_COLORS = {
+  high: '#EF4444',    // Red
+  medium: '#F59E0B',  // Orange
+  low: '#22C55E',     // Green
+}
+
+const createSeverityIcon = (severity: 'high' | 'medium' | 'low') => {
+  const color = SEVERITY_COLORS[severity]
   return L.divIcon({
     className: 'custom-marker',
     html: `
       <div style="
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         background-color: ${color};
         border: 3px solid white;
         border-radius: 50%;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+        cursor: pointer;
       "></div>
     `,
-    iconSize: [24, 24],
-    iconAnchor: [12, 12],
-    popupAnchor: [0, -12],
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+    popupAnchor: [0, -11],
   })
 }
 
@@ -79,9 +88,8 @@ export function MapContainerComponent({
     )
   }, [allReports, selectedHazards, confidenceThreshold])
 
-  const getMarkerIcon = useCallback((hazardType: string) => {
-    const hazard = hazardTypes.find((h) => h.id === hazardType)
-    return createHazardIcon(hazard?.color || '#6B7280')
+  const getMarkerIcon = useCallback((severity: 'high' | 'medium' | 'low') => {
+    return createSeverityIcon(severity)
   }, [])
 
   const center: [number, number] = [17.5, 73.5]
@@ -119,6 +127,7 @@ export function MapContainerComponent({
         const lat = report.coordinates?.lat ?? extReport.lat
         const lng = report.coordinates?.lng ?? extReport.lng
         const locationName = report.location ?? extReport.locationName
+        const hazardName = hazardTypes.find((h) => h.id === report.hazardType)?.name || report.hazardType
         
         if (!lat || !lng) return null
 
@@ -126,22 +135,26 @@ export function MapContainerComponent({
           <Marker
             key={report.id}
             position={[lat, lng]}
-            icon={getMarkerIcon(report.hazardType)}
+            icon={getMarkerIcon(report.severity)}
             eventHandlers={{
               click: () => onMarkerClick(report),
             }}
           >
-            <Popup>
-              <div className="text-sm">
-                <strong>{locationName}</strong>
-                <br />
-                <span className="text-gray-600">
-                  {hazardTypes.find((h) => h.id === report.hazardType)?.name}
-                </span>
-                <br />
-                <span className="text-xs">Click for details</span>
+            {/* Tooltip shows on hover */}
+            <Tooltip direction="top" offset={[0, -10]} opacity={1}>
+              <div className="text-xs min-w-[140px]">
+                <div className="font-semibold text-gray-800 mb-1">{hazardName}</div>
+                <div className="text-gray-600 truncate">{locationName}</div>
+                <div className="flex items-center gap-1 mt-1">
+                  <span 
+                    className="w-2 h-2 rounded-full" 
+                    style={{ backgroundColor: SEVERITY_COLORS[report.severity] }}
+                  />
+                  <span className="capitalize text-gray-500">{report.severity} severity</span>
+                </div>
+                <div className="text-gray-400 mt-1 text-[10px]">Click for details</div>
               </div>
-            </Popup>
+            </Tooltip>
           </Marker>
         )
       })}
