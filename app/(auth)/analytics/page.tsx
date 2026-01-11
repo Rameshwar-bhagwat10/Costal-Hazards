@@ -77,7 +77,7 @@ export default function AnalyticsPage() {
       {/* Data Notice - Compact */}
       <div className="p-3 bg-amber-50 rounded-lg border border-amber-200">
         <p className="text-xs text-amber-700">
-          <span className="font-medium">Note:</span> Data is based on citizen reports. For emergencies, contact official authorities.
+          <span className="font-medium">Note:</span> Data is based on citizen reports across Indian coastal regions. For emergencies, contact NDRF (1078) or local disaster management authorities.
         </p>
       </div>
     </div>

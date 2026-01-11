@@ -4,7 +4,6 @@ import './globals.css'
 import { AuthProvider } from '@/hooks/useAuth'
 import { ToastContainer } from '@/components/ui/Toast'
 import { OfflineBanner } from '@/components/ui/OfflineBanner'
-import { DemoBanner } from '@/components/ui/DemoBanner'
 import { SkipToContent } from '@/components/ui/SkipToContent'
 
 const inter = Inter({
@@ -15,7 +14,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Coastal Hazard AI',
-  description: 'AI-powered coastal hazard monitoring and reporting system',
+  description: 'AI-powered coastal hazard monitoring and reporting system for India',
 }
 
 export default function RootLayout({
@@ -28,7 +27,6 @@ export default function RootLayout({
       <body className="min-h-screen bg-[var(--bg-main)]">
         <SkipToContent />
         <OfflineBanner />
-        <DemoBanner />
         <AuthProvider>
           {children}
           <ToastContainer />

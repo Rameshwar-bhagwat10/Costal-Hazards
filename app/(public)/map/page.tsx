@@ -92,7 +92,7 @@ export default function MapPage() {
               Safety Map
             </h1>
             <p className="text-xs md:text-sm text-[var(--text-secondary)] mt-0.5">
-              Marker colors show severity • Tap for hazard type & details
+              Real-time hazard monitoring across Indian coastline • Tap markers for details
             </p>
           </div>
           
