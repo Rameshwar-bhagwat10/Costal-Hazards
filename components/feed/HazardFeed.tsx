@@ -236,25 +236,25 @@ export function HazardFeed() {
       />
 
       {/* Sort Options + Stats */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+      <div className="flex items-center justify-between gap-2 mb-4">
         <FeedSortOptions
           value={sortBy}
           onChange={setSortBy}
           hasLocation={!!userLocation}
         />
         
-        <div className="flex items-center gap-4 text-sm">
+        <div className="flex items-center gap-2 sm:gap-4 text-sm shrink-0">
           <button
             onClick={handleRefresh}
             disabled={isLoading}
-            className="flex items-center gap-1 text-[var(--text-secondary)] hover:text-[var(--info-blue)] transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-100 text-[var(--text-secondary)] hover:text-[var(--info-blue)] transition-colors"
+            aria-label="Refresh feed"
           >
             <svg className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            Refresh
           </button>
-          <span className="text-[var(--text-secondary)]">
+          <span className="hidden sm:flex items-center gap-1.5 text-[var(--text-secondary)]">
             {sortedPosts.length} result{sortedPosts.length !== 1 ? 's' : ''}
           </span>
           <span className="flex items-center gap-1.5">
@@ -262,7 +262,7 @@ export function HazardFeed() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
             </span>
-            <span className="text-red-600 font-medium">{activeCount} active</span>
+            <span className="text-red-600 font-medium text-xs sm:text-sm">{activeCount} active</span>
           </span>
         </div>
       </div>
