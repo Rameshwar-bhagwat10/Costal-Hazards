@@ -13,11 +13,11 @@ import {
 } from 'recharts'
 
 const regionData = [
-  { region: 'North Coast', risk: 85, color: '#EF4444' },
-  { region: 'South Beach', risk: 72, color: '#F59E0B' },
-  { region: 'East Shore', risk: 45, color: '#10B981' },
-  { region: 'West Harbor', risk: 68, color: '#F59E0B' },
-  { region: 'Central Bay', risk: 35, color: '#10B981' },
+  { region: 'Mumbai Coast', risk: 85, color: '#EF4444' },
+  { region: 'Tamil Nadu', risk: 78, color: '#EF4444' },
+  { region: 'Goa Coast', risk: 65, color: '#F59E0B' },
+  { region: 'Kerala Coast', risk: 52, color: '#F59E0B' },
+  { region: 'Gujarat Coast', risk: 38, color: '#10B981' },
 ]
 
 export function RegionRiskChart() {

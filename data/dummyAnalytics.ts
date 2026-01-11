@@ -100,25 +100,25 @@ export const hazardTrendData: Record<TimeRange, HazardCount[]> = {
 // Region distribution data by time range
 export const regionData: Record<TimeRange, RegionCount[]> = {
   '24h': [
-    { region: 'Marina Beach', reports: 12, riskLevel: 'high', change: 15 },
-    { region: 'Kovalam Coast', reports: 8, riskLevel: 'high', change: -5 },
-    { region: 'Besant Nagar', reports: 6, riskLevel: 'medium', change: 10 },
-    { region: 'Thiruvanmiyur', reports: 4, riskLevel: 'medium', change: 0 },
-    { region: 'Adyar Estuary', reports: 3, riskLevel: 'low', change: -8 },
+    { region: 'Mumbai Coast', reports: 12, riskLevel: 'high', change: 15 },
+    { region: 'Chennai Coast', reports: 8, riskLevel: 'high', change: -5 },
+    { region: 'Goa Coast', reports: 6, riskLevel: 'medium', change: 10 },
+    { region: 'Kerala Coast', reports: 4, riskLevel: 'medium', change: 0 },
+    { region: 'Gujarat Coast', reports: 3, riskLevel: 'low', change: -8 },
   ],
   '7d': [
-    { region: 'Marina Beach', reports: 45, riskLevel: 'high', change: 22 },
-    { region: 'Kovalam Coast', reports: 38, riskLevel: 'high', change: 12 },
-    { region: 'Besant Nagar', reports: 28, riskLevel: 'medium', change: -5 },
-    { region: 'Thiruvanmiyur', reports: 22, riskLevel: 'medium', change: 8 },
-    { region: 'Adyar Estuary', reports: 15, riskLevel: 'low', change: -12 },
+    { region: 'Mumbai Coast', reports: 45, riskLevel: 'high', change: 22 },
+    { region: 'Chennai Coast', reports: 38, riskLevel: 'high', change: 12 },
+    { region: 'Goa Coast', reports: 28, riskLevel: 'medium', change: -5 },
+    { region: 'Kerala Coast', reports: 22, riskLevel: 'medium', change: 8 },
+    { region: 'Gujarat Coast', reports: 15, riskLevel: 'low', change: -12 },
   ],
   '30d': [
-    { region: 'Marina Beach', reports: 156, riskLevel: 'high', change: 18 },
-    { region: 'Kovalam Coast', reports: 132, riskLevel: 'high', change: 25 },
-    { region: 'Besant Nagar', reports: 98, riskLevel: 'medium', change: -8 },
-    { region: 'Thiruvanmiyur', reports: 76, riskLevel: 'medium', change: 5 },
-    { region: 'Adyar Estuary', reports: 54, riskLevel: 'low', change: -15 },
+    { region: 'Mumbai Coast', reports: 156, riskLevel: 'high', change: 18 },
+    { region: 'Chennai Coast', reports: 132, riskLevel: 'high', change: 25 },
+    { region: 'Goa Coast', reports: 98, riskLevel: 'medium', change: -8 },
+    { region: 'Kerala Coast', reports: 76, riskLevel: 'medium', change: 5 },
+    { region: 'Gujarat Coast', reports: 54, riskLevel: 'low', change: -15 },
   ],
 }
 
@@ -187,18 +187,18 @@ export const summaryMetrics: Record<TimeRange, SummaryMetrics> = {
 // AI-style insights by time range
 export const insights: Record<TimeRange, string[]> = {
   '24h': [
-    'Rip current activity peaked at 4 PM near Marina Beach. Exercise caution during evening hours.',
-    'Coastal flooding reports increased 18% compared to yesterday, primarily in northern zones.',
+    'Rip current activity peaked at 4 PM near Goa beaches. Exercise caution during evening hours.',
+    'Coastal flooding reports increased 18% compared to yesterday, primarily in Mumbai coastal zones.',
     'All high-risk alerts have been verified within 15 minutes of submission.',
   ],
   '7d': [
-    'Coastal flooding incidents increased 23% this week, correlating with high tide patterns.',
-    'Marina Beach and Kovalam Coast remain the highest risk areas with consistent daily reports.',
-    'Weekend activity shows 40% more reports, likely due to increased beach visitors.',
+    'Coastal flooding incidents increased 23% this week along Maharashtra coast, correlating with monsoon patterns.',
+    'Mumbai Coast and Chennai Coast remain the highest risk areas with consistent daily reports.',
+    'Weekend activity shows 40% more reports from Goa, likely due to increased tourist activity.',
   ],
   '30d': [
-    'Monthly trend shows gradual increase in erosion reports, suggesting seasonal pattern.',
-    'Verification rate improved from 85% to 91% over the past month.',
-    'Storm surge warnings decreased 15% compared to previous month.',
+    'Monthly trend shows gradual increase in erosion reports along Kerala coast, suggesting seasonal pattern.',
+    'Verification rate improved from 85% to 91% over the past month across all Indian coastal regions.',
+    'Cyclone-related storm surge warnings decreased 15% compared to previous month in Bay of Bengal.',
   ],
 }

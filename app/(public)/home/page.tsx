@@ -93,8 +93,8 @@ export default function HomePage() {
     <div className="space-y-6">
       <AlertBanner
         severity="high"
-        title="Active Flood Warning"
-        message="Flooding reported in Marina Bay Area. Avoid low-lying coastal roads and monitor official updates."
+        title="Cyclone Alert - Bay of Bengal"
+        message="Cyclonic activity detected in Bay of Bengal. Coastal areas of Tamil Nadu and Andhra Pradesh advised to stay alert. Monitor official IMD updates."
       />
 
       {isLoading ? (
