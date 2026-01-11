@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button'
 
 function UserMenu({ user, onLogout }: { user: { name?: string | null; email?: string | null; image?: string | null }; onLogout: () => void }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [imageError, setImageError] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -23,7 +24,9 @@ function UserMenu({ user, onLogout }: { user: { name?: string | null; email?: st
   }, [])
 
   const displayName = user.name || user.email?.split('@')[0] || 'User'
-  const initials = displayName.slice(0, 2).toUpperCase()
+  const firstLetter = displayName.charAt(0).toUpperCase()
+
+  const showImage = user.image && !imageError
 
   return (
     <div className="relative" ref={menuRef}>
@@ -32,17 +35,19 @@ function UserMenu({ user, onLogout }: { user: { name?: string | null; email?: st
         className="p-0.5 rounded-full hover:ring-2 hover:ring-[var(--border-soft)] transition-all"
         aria-label="User menu"
       >
-        {user.image ? (
+        {showImage ? (
           <Image
-            src={user.image}
+            src={user.image!}
             alt={displayName}
             width={36}
             height={36}
-            className="w-9 h-9 rounded-full"
+            className="w-9 h-9 rounded-full object-cover"
+            onError={() => setImageError(true)}
+            unoptimized
           />
         ) : (
-          <div className="w-9 h-9 rounded-full bg-[#2563EB] flex items-center justify-center text-white text-sm font-medium">
-            {initials}
+          <div className="w-9 h-9 rounded-full bg-[#2563EB] flex items-center justify-center text-white text-base font-semibold">
+            {firstLetter}
           </div>
         )}
       </button>
