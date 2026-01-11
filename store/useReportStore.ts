@@ -171,7 +171,7 @@ export const useReportStore = create<ReportStore>()(
       },
     }),
     {
-      name: 'coastal-hazard-store',
+      name: 'safecoast-store',
       partialize: (state) => ({
         reports: state.reports,
         socialVerifications: state.socialVerifications,

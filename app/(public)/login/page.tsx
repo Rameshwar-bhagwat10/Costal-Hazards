@@ -63,7 +63,7 @@ function LoginForm() {
         <div className="flex flex-col items-center mb-8">
           <Image
             src="/app_logo.png"
-            alt="Coastal Hazard AI Logo"
+            alt="SafeCoast Logo"
             width={64}
             height={64}
             className="w-16 h-16 mb-4"

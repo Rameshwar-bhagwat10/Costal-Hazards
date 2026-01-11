@@ -1,7 +1,7 @@
 {
-  "name": "Coastal Hazard AI",
-  "short_name": "Hazard AI",
-  "description": "AI-powered coastal hazard monitoring and community reporting system",
+  "name": "SafeCoast",
+  "short_name": "SafeCoast",
+  "description": "AI-powered coastal safety monitoring and community reporting system for India",
   "start_url": "/home",
   "display": "standalone",
   "background_color": "#ffffff",

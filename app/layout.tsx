@@ -13,8 +13,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Coastal Hazard AI',
-  description: 'AI-powered coastal hazard monitoring and reporting system for India',
+  title: 'SafeCoast',
+  description: 'AI-powered coastal safety monitoring and reporting system for India',
 }
 
 export default function RootLayout({

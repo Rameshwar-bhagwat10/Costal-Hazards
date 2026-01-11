@@ -59,7 +59,7 @@ export function InstallPrompt() {
 
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-semibold text-text-primary mb-1">
-              Install Coastal Hazard AI
+              Install SafeCoast
             </h3>
             <p className="text-xs text-text-secondary mb-3">
               Get instant access to hazard alerts and report emergencies even when offline.

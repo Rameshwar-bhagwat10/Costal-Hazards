@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const authCookie = request.cookies.get('coastal_hazard_auth')
+  const authCookie = request.cookies.get('safecoast_auth')
   const isAuthenticated = authCookie?.value === 'true'
 
   if (!isAuthenticated) {

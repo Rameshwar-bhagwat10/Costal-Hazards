@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="bg-bg-card border-t border-border-soft">
       <div className="container-main py-6">
         <p className="small-text text-center">
-          © 2026 Coastal Hazard AI. All rights reserved.
+          © 2026 SafeCoast. All rights reserved.
         </p>
       </div>
     </footer>

@@ -99,13 +99,13 @@ export function Navbar() {
         >
           <Image
             src="/app_logo.png"
-            alt="Coastal Hazard AI Logo"
+            alt="SafeCoast Logo"
             width={36}
             height={36}
             className="w-8 h-8 sm:w-9 sm:h-9"
           />
           <span className="font-semibold text-sm sm:text-base md:text-lg text-text-primary">
-            Coastal Hazard AI
+            SafeCoast
           </span>
         </Link>
 

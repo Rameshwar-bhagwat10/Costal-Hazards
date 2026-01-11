@@ -1,5 +1,5 @@
-// Service Worker for Coastal Hazard AI PWA
-const CACHE_NAME = 'coastal-hazard-v1';
+// Service Worker for SafeCoast PWA
+const CACHE_NAME = 'safecoast-v1';
 const OFFLINE_URL = '/offline';
 
 // Assets to cache on install
@@ -134,7 +134,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification(data.title || 'Coastal Hazard Alert', options)
+    self.registration.showNotification(data.title || 'SafeCoast Alert', options)
   );
 });
 
