@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/Button'
-import { hazardTypes } from '@/data/hazardTypes'
 
 interface MapHelpProps {
   isOpen: boolean
@@ -101,46 +100,43 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
           <section className="mb-5">
             <h3 className="font-medium text-sm mb-2 flex items-center gap-2">
               <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
-              Hazard Markers
+              Understanding Markers
             </h3>
-            <p className="text-sm text-[var(--text-secondary)] mb-2">
-              Colored dots represent different types of coastal hazards:
-            </p>
-            <div className="grid grid-cols-2 gap-2">
-              {hazardTypes.map((hazard) => (
-                <div key={hazard.id} className="flex items-center gap-2 text-sm">
-                  <span
-                    className="w-4 h-4 rounded-full border-2 border-white shadow-sm"
-                    style={{ backgroundColor: hazard.color }}
-                  />
-                  <span>{hazard.name}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Risk Zones */}
-          <section className="mb-5">
-            <h3 className="font-medium text-sm mb-2 flex items-center gap-2">
-              <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">3</span>
-              Risk Zones (Colored Circles)
-            </h3>
-            <p className="text-sm text-[var(--text-secondary)] mb-2">
-              Transparent circles show the affected area around each hazard:
+            <p className="text-sm text-[var(--text-secondary)] mb-3">
+              <strong>Marker colors indicate severity level</strong>, not hazard type. Tap any marker to see the specific hazard type and details.
             </p>
             <div className="space-y-2">
               <div className="flex items-center gap-3 text-sm">
-                <span className="w-8 h-4 rounded bg-red-500/40 border border-red-500" />
-                <span><strong>Red</strong> - High risk, immediate danger</span>
+                <span className="w-5 h-5 rounded-full bg-red-500 shadow-sm" />
+                <span><strong>Red</strong> - High severity, immediate danger</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <span className="w-8 h-4 rounded bg-amber-500/40 border border-amber-500" />
-                <span><strong>Orange</strong> - Medium risk, use caution</span>
+                <span className="w-5 h-5 rounded-full bg-amber-500 shadow-sm" />
+                <span><strong>Orange</strong> - Medium severity, use caution</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <span className="w-8 h-4 rounded bg-yellow-500/40 border border-yellow-500" />
-                <span><strong>Yellow</strong> - Low risk, stay aware</span>
+                <span className="w-5 h-5 rounded-full bg-green-500 shadow-sm" />
+                <span><strong>Green</strong> - Low severity, stay aware</span>
               </div>
+            </div>
+          </section>
+
+          {/* Hazard Types */}
+          <section className="mb-5">
+            <h3 className="font-medium text-sm mb-2 flex items-center gap-2">
+              <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+              Hazard Types
+            </h3>
+            <p className="text-sm text-[var(--text-secondary)] mb-2">
+              Tap a marker to see which type of hazard it is:
+            </p>
+            <div className="grid grid-cols-2 gap-1.5 text-sm text-gray-600">
+              <span>• Flooding</span>
+              <span>• Rip Current</span>
+              <span>• Erosion</span>
+              <span>• Storm Surge</span>
+              <span>• Tsunami</span>
+              <span>• Pollution</span>
             </div>
           </section>
 
@@ -164,13 +160,12 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
           <section className="mb-5">
             <h3 className="font-medium text-sm mb-2 flex items-center gap-2">
               <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs">💡</span>
-              Pro Tips
+              Quick Tips
             </h3>
             <ul className="text-sm text-[var(--text-secondary)] space-y-1">
-              <li>• Zoom in to see individual hazard locations clearly</li>
-              <li>• Click on a marker to get safety recommendations</li>
-              <li>• Use filters to focus on hazards that affect you</li>
-              <li>• Check the legend (bottom-right) for quick reference</li>
+              <li>• <strong>Red markers</strong> = most urgent, check first</li>
+              <li>• Tap markers to see hazard type & safety tips</li>
+              <li>• Use filters to focus on specific hazards</li>
             </ul>
           </section>
 

@@ -1,24 +1,30 @@
 'use client'
 
 import { useState } from 'react'
-import { hazardTypes } from '@/data/hazardTypes'
 
 export function MapLegend() {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
-  const riskLevels = [
-    { level: 'High Risk', color: '#EF4444', description: 'Immediate danger' },
-    { level: 'Medium Risk', color: '#F59E0B', description: 'Use caution' },
-    { level: 'Low Risk', color: '#FBBF24', description: 'Stay aware' },
+  // Severity levels - these determine the marker/zone COLOR
+  const severityLevels = [
+    { level: 'High', color: '#EF4444', description: 'Immediate danger, avoid area' },
+    { level: 'Medium', color: '#F59E0B', description: 'Use caution, stay alert' },
+    { level: 'Low', color: '#22C55E', description: 'Minor risk, stay aware' },
+  ]
+
+  // Marker types explanation
+  const markerTypes = [
+    { type: 'Solid Circle', description: 'Individual hazard report' },
+    { type: 'Shaded Zone', description: 'Risk area (larger = higher impact)' },
   ]
 
   return (
     <div className="absolute bottom-4 right-4 z-[500]">
-      {/* Collapsed state - just show toggle */}
+      {/* Collapsed state */}
       {isCollapsed ? (
         <button
           onClick={() => setIsCollapsed(false)}
-          className="flex items-center gap-2 px-3 py-2 bg-[var(--bg-card)] rounded-lg shadow-lg text-sm font-medium hover:bg-[var(--bg-muted)] transition-colors"
+          className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg shadow-lg text-sm font-medium hover:bg-gray-50 transition-colors border border-gray-200"
           aria-expanded={false}
           aria-controls="map-legend"
         >
@@ -31,75 +37,68 @@ export function MapLegend() {
         /* Expanded legend panel */
         <div
           id="map-legend"
-          className="bg-[var(--bg-card)] rounded-lg shadow-lg overflow-hidden w-56"
+          className="bg-white rounded-lg shadow-lg overflow-hidden w-52 border border-gray-200"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-3 py-2 bg-[var(--bg-muted)] border-b border-[var(--border-soft)]">
-            <h3 className="text-sm font-semibold">Map Legend</h3>
+          <div className="flex items-center justify-between px-3 py-2 bg-gray-50 border-b border-gray-200">
+            <h3 className="text-sm font-semibold text-gray-800">Map Legend</h3>
             <button
               onClick={() => setIsCollapsed(true)}
-              className="p-1 rounded hover:bg-[var(--bg-card)] transition-colors"
+              className="p-1 rounded hover:bg-white transition-colors"
               aria-label="Collapse legend"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
           <div className="p-3">
-            {/* Hazard Types */}
+            {/* Severity/Risk Levels - PRIMARY */}
             <div className="mb-3">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-2 uppercase tracking-wide">
-                Hazard Types
+              <p className="text-xs font-semibold text-gray-700 mb-2">
+                Severity Level (by color)
               </p>
-              <div className="space-y-1.5">
-                {hazardTypes.map((hazard) => (
-                  <div key={hazard.id} className="flex items-center gap-2">
+              <div className="space-y-2">
+                {severityLevels.map((item) => (
+                  <div key={item.level} className="flex items-start gap-2">
                     <span
-                      className="w-3 h-3 rounded-full border-2 border-white shadow-sm shrink-0"
-                      style={{ backgroundColor: hazard.color }}
+                      className="w-4 h-4 rounded-full shrink-0 mt-0.5 shadow-sm"
+                      style={{ backgroundColor: item.color }}
                     />
-                    <span className="text-xs">{hazard.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-[var(--border-soft)] my-3" />
-
-            {/* Risk Zones */}
-            <div>
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-2 uppercase tracking-wide">
-                Risk Zones
-              </p>
-              <div className="space-y-1.5">
-                {riskLevels.map((risk) => (
-                  <div key={risk.level} className="flex items-center gap-2">
-                    <span
-                      className="w-3 h-3 rounded border shrink-0"
-                      style={{ 
-                        backgroundColor: risk.color + '40',
-                        borderColor: risk.color 
-                      }}
-                    />
-                    <div className="flex-1 min-w-0">
-                      <span className="text-xs font-medium">{risk.level}</span>
-                      <span className="text-xs text-[var(--text-secondary)] ml-1">
-                        - {risk.description}
-                      </span>
+                    <div className="min-w-0">
+                      <span className="text-xs font-medium text-gray-800">{item.level}</span>
+                      <p className="text-xs text-gray-500 leading-tight">{item.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Divider */}
+            <div className="border-t border-gray-200 my-3" />
+
+            {/* Marker Types */}
+            <div>
+              <p className="text-xs font-semibold text-gray-700 mb-2">
+                Marker Types
+              </p>
+              <div className="space-y-1.5">
+                {markerTypes.map((item) => (
+                  <div key={item.type} className="flex items-center gap-2">
+                    <span className="text-xs text-gray-600">•</span>
+                    <span className="text-xs text-gray-600">
+                      <span className="font-medium">{item.type}:</span> {item.description}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Tip */}
-            <div className="mt-3 pt-3 border-t border-[var(--border-soft)]">
-              <p className="text-xs text-[var(--text-secondary)] flex items-start gap-1.5">
-                <span className="text-blue-500">💡</span>
-                Click markers for details
+            <div className="mt-3 pt-3 border-t border-gray-200">
+              <p className="text-xs text-gray-500">
+                💡 Tap markers to see hazard type & details
               </p>
             </div>
           </div>
