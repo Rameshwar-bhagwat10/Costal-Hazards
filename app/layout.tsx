@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="min-h-screen bg-[var(--bg-main)]">
+      <body className="min-h-screen bg-bg-main">
         <SkipToContent />
         <OfflineBanner />
         <AuthProvider>

@@ -38,7 +38,7 @@ function VerificationHistoryComponent() {
     <Card>
       <CardHeader>
         <CardTitle className="text-base flex items-center gap-2">
-          <svg className="w-5 h-5 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Recent Verifications
@@ -54,14 +54,14 @@ function VerificationHistoryComponent() {
               return (
                 <div
                   key={verification.id}
-                  className="flex items-start gap-3 p-3 bg-[var(--bg-muted)] rounded-lg transition-all hover:bg-gray-100 animate-fade-in"
+                  className="flex items-start gap-3 p-3 bg-bg-muted rounded-lg transition-all hover:bg-gray-100 animate-fade-in"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <div className="text-[var(--text-secondary)] mt-0.5 flex-shrink-0">
+                  <div className="text-text-secondary mt-0.5 flex-shrink-0">
                     {inputTypeIcons[verification.inputType]}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-[var(--text-primary)] truncate">
+                    <p className="text-sm text-text-primary truncate">
                       {verification.inputContent.slice(0, 50)}
                       {verification.inputContent.length > 50 ? '...' : ''}
                     </p>
@@ -69,7 +69,7 @@ function VerificationHistoryComponent() {
                       <Badge variant={config.variant} className="text-xs">
                         {config.label}
                       </Badge>
-                      <span className="text-xs text-[var(--text-secondary)]">
+                      <span className="text-xs text-text-secondary">
                         {verification.confidence}%
                       </span>
                     </div>

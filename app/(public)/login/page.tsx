@@ -68,8 +68,8 @@ function LoginForm() {
             height={64}
             className="w-16 h-16 mb-4"
           />
-          <h1 className="text-xl font-bold text-[var(--text-primary)]">Welcome</h1>
-          <p className="text-sm text-[var(--text-secondary)] text-center mt-1">
+          <h1 className="text-xl font-bold text-text-primary">Welcome</h1>
+          <p className="text-sm text-text-secondary text-center mt-1">
             Sign in to report hazards and access analytics
           </p>
         </div>
@@ -99,8 +99,8 @@ function LoginForm() {
           )}
         </button>
 
-        <div className="mt-6 pt-4 border-t border-[var(--border-soft)]">
-          <p className="text-xs text-[var(--text-secondary)] text-center">
+        <div className="mt-6 pt-4 border-t border-border-soft">
+          <p className="text-xs text-text-secondary text-center">
             By signing in, you agree to our Terms of Service and Privacy Policy.
             Your reports help keep our coastal communities safe.
           </p>

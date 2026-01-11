@@ -80,10 +80,10 @@ export function SummaryCards({ metrics }: SummaryCardsProps) {
           <Card key={card.label} padding="sm" className="relative overflow-hidden">
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm text-[var(--text-secondary)] mb-0.5 truncate">{card.label}</p>
+                <p className="text-xs sm:text-sm text-text-secondary mb-0.5 truncate">{card.label}</p>
                 <p className={`text-xl sm:text-2xl font-bold ${card.color}`}>{card.value}</p>
                 {card.subtitle && (
-                  <p className="text-xs text-[var(--text-secondary)] mt-0.5 truncate">{card.subtitle}</p>
+                  <p className="text-xs text-text-secondary mt-0.5 truncate">{card.subtitle}</p>
                 )}
               </div>
               <div className={`p-1.5 sm:p-2 rounded-lg ${card.bgColor} shrink-0`}>

@@ -11,20 +11,20 @@ interface AlertBannerProps {
 export function AlertBanner({ severity, title, message }: AlertBannerProps) {
   const severityConfig = {
     high: {
-      bg: 'bg-red-50 border-[var(--alert-red)]',
-      icon: 'text-[var(--alert-red)]',
+      bg: 'bg-red-50 border-alert-red',
+      icon: 'text-alert-red',
       badge: 'alert' as const,
       pulse: true,
     },
     medium: {
-      bg: 'bg-amber-50 border-[var(--warning-orange)]',
-      icon: 'text-[var(--warning-orange)]',
+      bg: 'bg-amber-50 border-warning-orange',
+      icon: 'text-warning-orange',
       badge: 'warning' as const,
       pulse: false,
     },
     low: {
-      bg: 'bg-blue-50 border-[var(--info-blue)]',
-      icon: 'text-[var(--info-blue)]',
+      bg: 'bg-blue-50 border-info-blue',
+      icon: 'text-info-blue',
       badge: 'info' as const,
       pulse: false,
     },
@@ -55,12 +55,12 @@ export function AlertBanner({ severity, title, message }: AlertBannerProps) {
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2 mb-1">
-            <h2 className="font-semibold text-[var(--text-primary)]">{title}</h2>
+            <h2 className="font-semibold text-text-primary">{title}</h2>
             <Badge variant={config.badge} size="sm">
               {severity.charAt(0).toUpperCase() + severity.slice(1)} Risk
             </Badge>
           </div>
-          <p className="text-sm text-[var(--text-secondary)]">{message}</p>
+          <p className="text-sm text-text-secondary">{message}</p>
         </div>
       </div>
     </div>

@@ -247,14 +247,14 @@ export function HazardFeed() {
           <button
             onClick={handleRefresh}
             disabled={isLoading}
-            className="p-2 rounded-lg hover:bg-gray-100 text-[var(--text-secondary)] hover:text-[var(--info-blue)] transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-100 text-text-secondary hover:text-info-blue transition-colors"
             aria-label="Refresh feed"
           >
             <svg className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
           </button>
-          <span className="hidden sm:flex items-center gap-1.5 text-[var(--text-secondary)]">
+          <span className="hidden sm:flex items-center gap-1.5 text-text-secondary">
             {sortedPosts.length} result{sortedPosts.length !== 1 ? 's' : ''}
           </span>
           <span className="flex items-center gap-1.5">
@@ -293,8 +293,8 @@ export function HazardFeed() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">No hazards found</h3>
-          <p className="text-sm text-[var(--text-secondary)] mb-4 max-w-xs mx-auto">
+          <h3 className="text-lg font-semibold text-text-primary mb-2">No hazards found</h3>
+          <p className="text-sm text-text-secondary mb-4 max-w-xs mx-auto">
             {filters.nearMe 
               ? `No hazards reported within ${filters.radius}km of your location.`
               : 'Try adjusting your filters to see more results.'
@@ -325,7 +325,7 @@ export function HazardFeed() {
 
       {/* End of Feed */}
       {!hasMore && visiblePosts.length > 0 && !isLoading && (
-        <div className="mt-6 text-center py-4 text-sm text-[var(--text-secondary)]">
+        <div className="mt-6 text-center py-4 text-sm text-text-secondary">
           <p>You&apos;ve reached the end of the feed</p>
         </div>
       )}

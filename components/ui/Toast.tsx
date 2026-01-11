@@ -46,7 +46,7 @@ export function ToastContainer() {
   if (toasts.length === 0) return null
 
   return (
-    <div className="fixed bottom-20 md:bottom-6 md:top-auto md:right-4 left-4 right-4 md:left-auto z-[100] space-y-2 pointer-events-none">
+    <div className="fixed bottom-20 md:bottom-6 md:top-auto md:right-4 left-4 right-4 md:left-auto z-100 space-y-2 pointer-events-none">
       {toasts.map((toast) => (
         <ToastItem key={toast.id} toast={toast} onClose={() => removeToast(toast.id)} />
       ))}
@@ -64,22 +64,22 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
 
   const icons: Record<ToastType, React.ReactNode> = {
     success: (
-      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
       </svg>
     ),
     error: (
-      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
       </svg>
     ),
     info: (
-      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     warning: (
-      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
       </svg>
     ),
@@ -99,7 +99,7 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
       <p className="flex-1 text-sm font-medium">{toast.message}</p>
       <button
         onClick={onClose}
-        className="p-1 hover:bg-white/20 rounded transition-colors flex-shrink-0"
+        className="p-1 hover:bg-white/20 rounded transition-colors shrink-0"
         aria-label="Dismiss notification"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

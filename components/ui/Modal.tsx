@@ -110,7 +110,7 @@ export default function Modal({ isOpen, onClose, children, title, ariaLabel }: P
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)]"
+          className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-info-blue"
           aria-label="Close modal"
         >
           <svg

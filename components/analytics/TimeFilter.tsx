@@ -15,7 +15,7 @@ const options: { value: TimeRange; label: string; shortLabel: string }[] = [
 
 export function TimeFilter({ value, onChange }: TimeFilterProps) {
   return (
-    <div className="flex gap-1 p-1 bg-[var(--bg-muted)] rounded-lg">
+    <div className="flex gap-1 p-1 bg-bg-muted rounded-lg">
       {options.map((option) => (
         <button
           key={option.value}
@@ -23,8 +23,8 @@ export function TimeFilter({ value, onChange }: TimeFilterProps) {
           onClick={() => onChange(option.value)}
           className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-md transition-all ${
             value === option.value
-              ? 'bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm'
-              : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              ? 'bg-bg-card text-text-primary shadow-sm'
+              : 'text-text-secondary hover:text-text-primary'
           }`}
           aria-pressed={value === option.value}
         >

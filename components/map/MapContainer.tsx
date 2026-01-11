@@ -97,10 +97,10 @@ export function MapContainerComponent({
 
   if (!isMounted) {
     return (
-      <div className="w-full h-full bg-[var(--bg-muted)] flex items-center justify-center">
+      <div className="w-full h-full bg-bg-muted flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-[var(--info-blue)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-[var(--text-secondary)]">Loading map...</p>
+          <div className="w-12 h-12 border-4 border-info-blue border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-text-secondary">Loading map...</p>
         </div>
       </div>
     )

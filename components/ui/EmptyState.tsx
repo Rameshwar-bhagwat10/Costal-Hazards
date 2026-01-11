@@ -53,13 +53,13 @@ export function EmptyState({
       `}
     >
       {icon && (
-        <div className={`text-[var(--text-secondary)] opacity-40 ${isCompact ? 'mb-3' : 'mb-4'}`}>
+        <div className={`text-text-secondary opacity-40 ${isCompact ? 'mb-3' : 'mb-4'}`}>
           {icon}
         </div>
       )}
       <h3
         className={`
-          font-semibold text-[var(--text-primary)]
+          font-semibold text-text-primary
           ${isCompact ? 'text-sm mb-1' : 'text-lg mb-2'}
         `}
       >
@@ -68,7 +68,7 @@ export function EmptyState({
       {description && (
         <p
           className={`
-            text-[var(--text-secondary)] max-w-sm
+            text-text-secondary max-w-sm
             ${isCompact ? 'text-xs' : 'text-sm'}
           `}
         >

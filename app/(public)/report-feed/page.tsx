@@ -16,21 +16,21 @@ export default function ReportFeedPage() {
       <div className="mb-4 sm:mb-6">
         <div className="flex items-start sm:items-center justify-between gap-3 mb-2">
           <div className="min-w-0 flex-1">
-            <h1 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] flex items-center gap-2 flex-wrap">
+            <h1 className="text-xl sm:text-2xl font-bold text-text-primary flex items-center gap-2 flex-wrap">
               <span>Community Reports</span>
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
               </span>
             </h1>
-            <p className="text-sm text-[var(--text-secondary)] mt-0.5">
+            <p className="text-sm text-text-secondary mt-0.5">
               Real-time hazard reports from communities across India
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setShowHelp(!showHelp)}
-              className="p-2 rounded-lg border border-[var(--border-soft)] hover:bg-gray-50 text-[var(--text-secondary)]"
+              className="p-2 rounded-lg border border-border-soft hover:bg-gray-50 text-text-secondary"
               aria-label="Help"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

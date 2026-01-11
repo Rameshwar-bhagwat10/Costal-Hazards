@@ -34,11 +34,11 @@ export function MapFilters({
   const clearAll = () => onHazardsChange([])
 
   return (
-    <div className="absolute top-4 left-4 z-[500]">
+    <div className="absolute top-4 left-4 z-500">
       {/* Toggle button */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center gap-2 px-4 py-2.5 bg-[var(--bg-card)] rounded-lg shadow-lg text-sm font-medium hover:bg-[var(--bg-muted)] transition-colors"
+        className="flex items-center gap-2 px-4 py-2.5 bg-bg-card rounded-lg shadow-lg text-sm font-medium hover:bg-bg-muted transition-colors"
         aria-expanded={isExpanded}
         aria-controls="map-filters"
       >
@@ -47,7 +47,7 @@ export function MapFilters({
         </svg>
         Filters
         {selectedHazards.length < hazardTypes.length && (
-          <span className="bg-[var(--info-blue)] text-white text-xs px-1.5 py-0.5 rounded-full">
+          <span className="bg-info-blue text-white text-xs px-1.5 py-0.5 rounded-full">
             {selectedHazards.length}
           </span>
         )}
@@ -57,7 +57,7 @@ export function MapFilters({
       {isExpanded && (
         <div
           id="map-filters"
-          className="mt-2 bg-[var(--bg-card)] rounded-lg shadow-lg p-4 w-72"
+          className="mt-2 bg-bg-card rounded-lg shadow-lg p-4 w-72"
         >
           {/* Hazard Types */}
           <div className="mb-4">
@@ -66,14 +66,14 @@ export function MapFilters({
               <div className="flex gap-2 text-xs">
                 <button
                   onClick={selectAll}
-                  className="text-[var(--info-blue)] hover:underline"
+                  className="text-info-blue hover:underline"
                 >
                   All
                 </button>
-                <span className="text-[var(--text-secondary)]">|</span>
+                <span className="text-text-secondary">|</span>
                 <button
                   onClick={clearAll}
-                  className="text-[var(--info-blue)] hover:underline"
+                  className="text-info-blue hover:underline"
                 >
                   None
                 </button>
@@ -89,7 +89,7 @@ export function MapFilters({
                     type="checkbox"
                     checked={selectedHazards.includes(hazard.id)}
                     onChange={() => toggleHazard(hazard.id)}
-                    className="w-4 h-4 rounded border-[var(--border-soft)] text-[var(--info-blue)] focus:ring-[var(--info-blue)]"
+                    className="w-4 h-4 rounded border-border-soft text-info-blue focus:ring-info-blue"
                   />
                   <span
                     className="w-2.5 h-2.5 rounded-full"
@@ -112,9 +112,9 @@ export function MapFilters({
               max="100"
               value={confidenceThreshold}
               onChange={(e) => onConfidenceChange(Number(e.target.value))}
-              className="w-full h-2 bg-[var(--bg-muted)] rounded-lg appearance-none cursor-pointer accent-[var(--info-blue)]"
+              className="w-full h-2 bg-bg-muted rounded-lg appearance-none cursor-pointer accent-info-blue"
             />
-            <div className="flex justify-between text-xs text-[var(--text-secondary)] mt-1">
+            <div className="flex justify-between text-xs text-text-secondary mt-1">
               <span>0%</span>
               <span>50%</span>
               <span>100%</span>
@@ -127,7 +127,7 @@ export function MapFilters({
             <select
               value={timeRange}
               onChange={(e) => onTimeRangeChange(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-[var(--border-soft)] bg-[var(--bg-card)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)]"
+              className="w-full px-3 py-2 rounded-lg border border-border-soft bg-bg-card text-sm focus:outline-none focus:ring-2 focus:ring-info-blue"
             >
               <option value="24h">Last 24 hours</option>
               <option value="7d">Last 7 days</option>

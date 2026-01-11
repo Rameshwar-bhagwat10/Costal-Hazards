@@ -11,7 +11,7 @@ export function OfflineBanner() {
     <div
       role="alert"
       aria-live="assertive"
-      className="fixed top-0 left-0 right-0 z-[200] bg-amber-500 text-white px-4 py-2 text-center text-sm font-medium"
+      className="fixed top-0 left-0 right-0 z-200 bg-amber-500 text-white px-4 py-2 text-center text-sm font-medium"
     >
       <div className="flex items-center justify-center gap-2">
         <svg

@@ -15,9 +15,9 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
     <div className="mb-8">
       {/* Progress bar */}
       <div className="relative">
-        <div className="absolute top-4 left-0 right-0 h-0.5 bg-[var(--bg-muted)]" />
+        <div className="absolute top-4 left-0 right-0 h-0.5 bg-bg-muted" />
         <div
-          className="absolute top-4 left-0 h-0.5 bg-[var(--info-blue)] transition-all duration-500"
+          className="absolute top-4 left-0 h-0.5 bg-info-blue transition-all duration-500"
           style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
         />
 
@@ -34,10 +34,10 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
                     w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
                     transition-all duration-300
                     ${isCompleted
-                      ? 'bg-[var(--info-blue)] text-white'
+                      ? 'bg-info-blue text-white'
                       : isCurrent
-                        ? 'bg-[var(--info-blue)] text-white ring-4 ring-blue-100'
-                        : 'bg-[var(--bg-muted)] text-[var(--text-secondary)]'
+                        ? 'bg-info-blue text-white ring-4 ring-blue-100'
+                        : 'bg-bg-muted text-text-secondary'
                     }
                   `}
                 >
@@ -52,7 +52,7 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
                 <span
                   className={`
                     mt-2 text-xs font-medium text-center max-w-[80px]
-                    ${isCurrent ? 'text-[var(--info-blue)]' : 'text-[var(--text-secondary)]'}
+                    ${isCurrent ? 'text-info-blue' : 'text-text-secondary'}
                   `}
                 >
                   {step.label}

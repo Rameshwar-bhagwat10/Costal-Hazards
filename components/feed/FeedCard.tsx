@@ -157,7 +157,7 @@ export function FeedCard({
         relative bg-white rounded-xl border overflow-hidden transition-all duration-200
         ${isResolved 
           ? 'opacity-60 border-gray-200 bg-gray-50' 
-          : 'border-[var(--border-soft)] hover:border-[var(--info-blue)] hover:shadow-md'
+          : 'border-border-soft hover:border-info-blue hover:shadow-md'
         }
       `}
       aria-label={`${post.title} - ${post.status}`}
@@ -221,7 +221,7 @@ export function FeedCard({
             {showActions && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setShowActions(false)} />
-                <div className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-lg border border-[var(--border-soft)] py-1 z-20 min-w-[120px]">
+                <div className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-lg border border-border-soft py-1 z-20 min-w-[120px]">
                   <button
                     onClick={handleShare}
                     className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
@@ -249,7 +249,7 @@ export function FeedCard({
         </div>
 
         {/* Title */}
-        <h3 className={`text-base sm:text-lg font-bold mb-1.5 leading-tight ${isResolved ? 'text-gray-500' : 'text-[var(--text-primary)]'}`}>
+        <h3 className={`text-base sm:text-lg font-bold mb-1.5 leading-tight ${isResolved ? 'text-gray-500' : 'text-text-primary'}`}>
           {post.title}
         </h3>
 
@@ -266,20 +266,20 @@ export function FeedCard({
         )}
 
         {/* Description */}
-        <p className={`text-sm mb-2 leading-relaxed line-clamp-2 ${isResolved ? 'text-gray-400' : 'text-[var(--text-secondary)]'}`}>
+        <p className={`text-sm mb-2 leading-relaxed line-clamp-2 ${isResolved ? 'text-gray-400' : 'text-text-secondary'}`}>
           {post.description}
         </p>
 
         {/* Meta Row: Location + Time + Trust */}
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mb-3">
-          <span className="flex items-center gap-1 text-[var(--text-secondary)]">
+          <span className="flex items-center gap-1 text-text-secondary">
             <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <span className="truncate max-w-[140px] sm:max-w-[180px]">{post.location.name}</span>
           </span>
-          <span className="flex items-center gap-1 text-[var(--text-secondary)]">
+          <span className="flex items-center gap-1 text-text-secondary">
             <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -296,7 +296,7 @@ export function FeedCard({
         </div>
 
         {/* Bottom Row: Votes + Comments */}
-        <div className="flex items-center justify-between pt-3 border-t border-[var(--border-soft)]">
+        <div className="flex items-center justify-between pt-3 border-t border-border-soft">
           {/* Vote Buttons - Compact on mobile */}
           <div className="flex items-center">
             <button
@@ -348,7 +348,7 @@ export function FeedCard({
           {/* Comments Button */}
           <button
             onClick={() => onCommentClick(post)}
-            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-[var(--text-secondary)] transition-all"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-text-secondary transition-all"
             aria-label={`${post.commentsCount} comments`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -119,8 +119,8 @@ export function CommentPreview({
               {post.status === 'resolved' ? 'Resolved' : 'Active'}
             </span>
           </div>
-          <h4 className="font-bold text-sm sm:text-base text-[var(--text-primary)] mb-1">{post.title}</h4>
-          <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+          <h4 className="font-bold text-sm sm:text-base text-text-primary mb-1">{post.title}</h4>
+          <div className="flex items-center gap-2 text-xs text-text-secondary">
             <span className="flex items-center gap-1 truncate">
               <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -134,7 +134,7 @@ export function CommentPreview({
 
         {/* Comments Thread */}
         <div className="space-y-3 mb-4">
-          <h5 className="text-sm font-semibold text-[var(--text-primary)]">Community Updates</h5>
+          <h5 className="text-sm font-semibold text-text-primary">Community Updates</h5>
           
           {comments.map(comment => (
             <div

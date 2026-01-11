@@ -42,7 +42,7 @@ function ReportFeedComponent({
     <div className="space-y-4">
       <div className="flex items-center justify-between mb-2">
         <h2 className="heading-m">Verified Reports</h2>
-        <span className="text-sm text-[var(--text-secondary)]">
+        <span className="text-sm text-text-secondary">
           {filteredReports.length} report{filteredReports.length !== 1 ? 's' : ''}
         </span>
       </div>

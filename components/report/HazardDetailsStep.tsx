@@ -80,13 +80,13 @@ export function HazardDetailsStep({ data, onUpdate, onNext }: HazardDetailsStepP
         {/* Hazard Type Selection - Dropdown */}
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2">
-            Hazard Type <span className="text-[var(--alert-red)]">*</span>
+            Hazard Type <span className="text-alert-red">*</span>
           </label>
           <div className="relative">
             <select
               value={data.hazardType}
               onChange={(e) => handleHazardChange(e.target.value)}
-              className="w-full p-3 pr-10 rounded-lg border border-[var(--border-soft)] bg-[var(--bg-card)] text-[var(--text-primary)] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)] focus:border-transparent"
+              className="w-full p-3 pr-10 rounded-lg border border-border-soft bg-bg-card text-text-primary appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-info-blue focus:border-transparent"
             >
               <option value="">Select hazard type...</option>
               {hazardTypes.map((hazard) => (
@@ -110,7 +110,7 @@ export function HazardDetailsStep({ data, onUpdate, onNext }: HazardDetailsStepP
                 className="w-3 h-3 rounded-full"
                 style={{ backgroundColor: selectedHazard.color }}
               />
-              <span className="text-sm text-[var(--text-secondary)]">
+              <span className="text-sm text-text-secondary">
                 Selected: {selectedHazard.name}
               </span>
             </div>
@@ -124,7 +124,7 @@ export function HazardDetailsStep({ data, onUpdate, onNext }: HazardDetailsStepP
                 value={otherDescription}
                 onChange={(e) => setOtherDescription(e.target.value)}
                 placeholder="Please describe the hazard type..."
-                className="w-full p-3 rounded-lg border border-[var(--border-soft)] bg-[var(--bg-card)] focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)]"
+                className="w-full p-3 rounded-lg border border-border-soft bg-bg-card focus:outline-none focus:ring-2 focus:ring-info-blue"
               />
             </div>
           )}
@@ -149,24 +149,24 @@ export function HazardDetailsStep({ data, onUpdate, onNext }: HazardDetailsStepP
         {/* Description */}
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2">
-            Description <span className="text-[var(--alert-red)]">*</span>
+            Description <span className="text-alert-red">*</span>
           </label>
           <textarea
             value={data.description}
             onChange={(e) => onUpdate({ description: e.target.value })}
             placeholder="Describe the hazard situation in detail. Include what you observed, severity, and any immediate dangers..."
             className={`
-              w-full p-3 rounded-lg border bg-[var(--bg-card)] min-h-[120px] resize-none
-              focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)]
-              ${isDescriptionShort ? 'border-[var(--warning-orange)]' : 'border-[var(--border-soft)]'}
+              w-full p-3 rounded-lg border bg-bg-card min-h-[120px] resize-none
+              focus:outline-none focus:ring-2 focus:ring-info-blue
+              ${isDescriptionShort ? 'border-warning-orange' : 'border-border-soft'}
             `}
             maxLength={MAX_DESCRIPTION_LENGTH}
           />
           <div className="flex justify-between mt-1">
-            <span className={`text-xs ${isDescriptionShort ? 'text-[var(--warning-orange)]' : 'text-[var(--text-secondary)]'}`}>
+            <span className={`text-xs ${isDescriptionShort ? 'text-warning-orange' : 'text-text-secondary'}`}>
               {isDescriptionShort && `Minimum ${MIN_DESCRIPTION_LENGTH} characters required`}
             </span>
-            <span className={`text-xs ${descriptionLength > MAX_DESCRIPTION_LENGTH - 50 ? 'text-[var(--warning-orange)]' : 'text-[var(--text-secondary)]'}`}>
+            <span className={`text-xs ${descriptionLength > MAX_DESCRIPTION_LENGTH - 50 ? 'text-warning-orange' : 'text-text-secondary'}`}>
               {descriptionLength}/{MAX_DESCRIPTION_LENGTH}
             </span>
           </div>
@@ -174,8 +174,8 @@ export function HazardDetailsStep({ data, onUpdate, onNext }: HazardDetailsStepP
 
         {/* Errors */}
         {errors.length > 0 && (
-          <div className="mb-4 p-3 bg-red-50 border border-[var(--alert-red)] rounded-lg">
-            <ul className="text-sm text-[var(--alert-red)] space-y-1">
+          <div className="mb-4 p-3 bg-red-50 border border-alert-red rounded-lg">
+            <ul className="text-sm text-alert-red space-y-1">
               {errors.map((error, i) => (
                 <li key={i}>• {error}</li>
               ))}

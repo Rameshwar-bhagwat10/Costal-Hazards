@@ -30,7 +30,7 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 z-[1000]"
+        className="fixed inset-0 bg-black/50 z-1000"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -42,7 +42,7 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
         aria-modal="true"
         aria-labelledby="help-title"
         tabIndex={-1}
-        className="fixed z-[1001] bg-[var(--bg-card)] shadow-xl rounded-xl max-w-lg w-[calc(100%-2rem)] max-h-[80vh] overflow-y-auto
+        className="fixed z-1001 bg-bg-card shadow-xl rounded-xl max-w-lg w-[calc(100%-2rem)] max-h-[80vh] overflow-y-auto
           top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         <div className="p-5">
@@ -55,13 +55,13 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
                 </svg>
                 How to Use the Safety Map
               </h2>
-              <p className="text-sm text-[var(--text-secondary)] mt-1">
+              <p className="text-sm text-text-secondary mt-1">
                 Interactive guide to understanding hazard information
               </p>
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-[var(--bg-muted)] transition-colors"
+              className="p-2 rounded-lg hover:bg-bg-muted transition-colors"
               aria-label="Close help"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
               <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
               Map Controls
             </h3>
-            <div className="bg-[var(--bg-muted)] rounded-lg p-3 space-y-2 text-sm">
+            <div className="bg-bg-muted rounded-lg p-3 space-y-2 text-sm">
               <div className="flex items-center gap-3">
                 <span className="text-lg">🖱️</span>
                 <span><strong>Scroll</strong> to zoom in/out</span>
@@ -102,7 +102,7 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
               <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
               Understanding Markers
             </h3>
-            <p className="text-sm text-[var(--text-secondary)] mb-3">
+            <p className="text-sm text-text-secondary mb-3">
               <strong>Marker colors indicate severity level</strong>, not hazard type. Tap any marker to see the specific hazard type and details.
             </p>
             <div className="space-y-2">
@@ -127,7 +127,7 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
               <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">3</span>
               Hazard Types
             </h3>
-            <p className="text-sm text-[var(--text-secondary)] mb-2">
+            <p className="text-sm text-text-secondary mb-2">
               Tap a marker to see which type of hazard it is:
             </p>
             <div className="grid grid-cols-2 gap-1.5 text-sm text-gray-600">
@@ -146,9 +146,9 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
               <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">4</span>
               Using Filters
             </h3>
-            <div className="bg-[var(--bg-muted)] rounded-lg p-3 space-y-2 text-sm">
+            <div className="bg-bg-muted rounded-lg p-3 space-y-2 text-sm">
               <p>Click the <strong>Filters</strong> button (top-left) to:</p>
-              <ul className="list-disc list-inside space-y-1 text-[var(--text-secondary)]">
+              <ul className="list-disc list-inside space-y-1 text-text-secondary">
                 <li>Show/hide specific hazard types</li>
                 <li>Adjust minimum confidence level</li>
                 <li>Filter by time range</li>
@@ -162,7 +162,7 @@ export function MapHelp({ isOpen, onClose }: MapHelpProps) {
               <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs">💡</span>
               Quick Tips
             </h3>
-            <ul className="text-sm text-[var(--text-secondary)] space-y-1">
+            <ul className="text-sm text-text-secondary space-y-1">
               <li>• <strong>Red markers</strong> = most urgent, check first</li>
               <li>• Tap markers to see hazard type & safety tips</li>
               <li>• Use filters to focus on specific hazards</li>

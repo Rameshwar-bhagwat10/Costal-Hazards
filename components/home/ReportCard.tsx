@@ -23,7 +23,7 @@ function ReportCardComponent({ report }: ReportCardProps) {
   return (
     <Card
       padding="md"
-      className="card-interactive cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--info-blue)]"
+      className="card-interactive cursor-pointer focus-visible:ring-2 focus-visible:ring-info-blue"
       tabIndex={0}
       role="article"
       aria-label={`${hazard?.name} report at ${report.location}`}
@@ -43,7 +43,7 @@ function ReportCardComponent({ report }: ReportCardProps) {
         <ConfidenceBadge confidence={report.confidence} size="sm" />
         
         {report.hasMedia && (
-          <span className="text-[var(--text-secondary)]" title="Has media evidence">
+          <span className="text-text-secondary" title="Has media evidence">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
@@ -52,13 +52,13 @@ function ReportCardComponent({ report }: ReportCardProps) {
       </div>
 
       {/* Summary */}
-      <p className="text-sm text-[var(--text-primary)] mb-3 line-clamp-2">
+      <p className="text-sm text-text-primary mb-3 line-clamp-2">
         {report.summary}
       </p>
 
       {/* Footer with location and freshness */}
       <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-1 text-[var(--text-secondary)]">
+        <div className="flex items-center gap-1 text-text-secondary">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
           </svg>

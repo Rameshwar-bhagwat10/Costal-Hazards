@@ -68,15 +68,15 @@ export function RegionRiskChart() {
         <div className="flex justify-center gap-4 mt-3 text-xs">
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded bg-[#EF4444]" />
-            <span className="text-[var(--text-secondary)]">High (&gt;70%)</span>
+            <span className="text-text-secondary">High (&gt;70%)</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded bg-[#F59E0B]" />
-            <span className="text-[var(--text-secondary)]">Medium (40-70%)</span>
+            <span className="text-text-secondary">Medium (40-70%)</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded bg-[#10B981]" />
-            <span className="text-[var(--text-secondary)]">Low (&lt;40%)</span>
+            <span className="text-text-secondary">Low (&lt;40%)</span>
           </div>
         </div>
       </CardContent>

@@ -27,7 +27,7 @@ export function InsightCards({ insights }: InsightCardsProps) {
               <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">
                 {index + 1}
               </div>
-              <p className="text-xs sm:text-sm text-[var(--text-primary)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-text-primary leading-relaxed">
                 {insight}
               </p>
             </div>

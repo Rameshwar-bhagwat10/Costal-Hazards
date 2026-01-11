@@ -120,7 +120,7 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
         {/* Location Section */}
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2">
-            Location <span className="text-[var(--alert-red)]">*</span>
+            Location <span className="text-alert-red">*</span>
           </label>
 
           <div className="flex gap-2 mb-3">
@@ -151,15 +151,15 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
             value={manualAddress}
             onChange={(e) => handleManualAddress(e.target.value)}
             placeholder="Or enter address manually..."
-            className="w-full p-3 rounded-lg border border-[var(--border-soft)] bg-[var(--bg-card)] focus:outline-none focus:ring-2 focus:ring-[var(--info-blue)]"
+            className="w-full p-3 rounded-lg border border-border-soft bg-bg-card focus:outline-none focus:ring-2 focus:ring-info-blue"
           />
 
           {locationError && (
-            <p className="mt-2 text-sm text-[var(--alert-red)]">{locationError}</p>
+            <p className="mt-2 text-sm text-alert-red">{locationError}</p>
           )}
 
           {data.location && (
-            <p className="mt-2 text-sm text-[var(--text-secondary)]">
+            <p className="mt-2 text-sm text-text-secondary">
               📍 {data.location.address} ({data.location.lat.toFixed(4)}, {data.location.lng.toFixed(4)})
             </p>
           )}
@@ -168,20 +168,20 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
         {/* Media Upload Section */}
         <div className="mb-6">
           <label className="block text-sm font-medium mb-2">
-            Photos/Videos <span className="text-[var(--text-secondary)]">(Optional)</span>
+            Photos/Videos <span className="text-text-secondary">(Optional)</span>
           </label>
 
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-[var(--border-soft)] rounded-lg p-6 text-center cursor-pointer hover:border-[var(--info-blue)] hover:bg-[var(--bg-muted)] transition-colors"
+            className="border-2 border-dashed border-border-soft rounded-lg p-6 text-center cursor-pointer hover:border-info-blue hover:bg-bg-muted transition-colors"
           >
-            <svg className="w-10 h-10 mx-auto mb-2 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10 mx-auto mb-2 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <p className="text-sm text-[var(--text-secondary)]">
+            <p className="text-sm text-text-secondary">
               Click to upload images or videos
             </p>
-            <p className="text-xs text-[var(--text-secondary)] mt-1">
+            <p className="text-xs text-text-secondary mt-1">
               Max 10MB per file
             </p>
           </div>
@@ -197,7 +197,7 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
 
           {/* File Errors */}
           {fileErrors.length > 0 && (
-            <div className="mt-2 text-sm text-[var(--alert-red)]">
+            <div className="mt-2 text-sm text-alert-red">
               {fileErrors.map((error, i) => (
                 <p key={i}>• {error}</p>
               ))}
@@ -209,7 +209,7 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
             <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 gap-2">
               {data.media.map((file, index) => (
                 <div key={index} className="relative group">
-                  <div className="aspect-square rounded-lg overflow-hidden bg-[var(--bg-muted)]">
+                  <div className="aspect-square rounded-lg overflow-hidden bg-bg-muted">
                     {file.type.startsWith('image/') ? (
                       <Image
                         src={URL.createObjectURL(file)}
@@ -221,7 +221,7 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <svg className="w-8 h-8 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-8 h-8 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -230,7 +230,7 @@ export function LocationMediaStep({ data, onUpdate, onNext, onBack }: LocationMe
                   </div>
                   <button
                     onClick={() => removeFile(index)}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--alert-red)] text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-alert-red text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                     aria-label="Remove file"
                   >
                     ×
