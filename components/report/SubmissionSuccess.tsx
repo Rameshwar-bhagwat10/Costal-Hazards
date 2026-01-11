@@ -1,10 +1,12 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { hazardTypes } from '@/data/hazardTypes'
+import { useReportStore } from '@/store/useReportStore'
 import type { AIVerificationResult, ReportFormData } from '@/lib/reportValidation'
 
 interface SubmissionSuccessProps {
@@ -14,6 +16,32 @@ interface SubmissionSuccessProps {
 }
 
 export function SubmissionSuccess({ data, result, onSubmitAnother }: SubmissionSuccessProps) {
+  const addReport = useReportStore((state) => state.addReport)
+  const hasAddedReport = useRef(false)
+
+  // Add report to store on mount (only once)
+  useEffect(() => {
+    if (hasAddedReport.current) return
+    hasAddedReport.current = true
+
+    if (data.location) {
+      addReport({
+        hazardType: data.hazardType,
+        description: data.description,
+        location: {
+          lat: data.location.lat,
+          lng: data.location.lng,
+          address: data.location.address,
+        },
+        media: data.media,
+        confidence: result.confidence,
+        status: result.status === 'verified' ? 'verified' : result.status === 'low-trust' ? 'rejected' : 'pending',
+        severity: result.urgency,
+        aiSummary: result.summary,
+      })
+    }
+  }, [data, result, addReport])
+
   const hazard = hazardTypes.find((h) => h.id === data.hazardType)
 
   const statusConfig = {
